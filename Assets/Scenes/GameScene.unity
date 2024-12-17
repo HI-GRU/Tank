@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 69375159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6705178, y: 0.04877822, z: -9.926862}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skin: {fileID: 1749454414}
   rotationSpeed: 180
-  moveSpeed: 1
+  moveSpeed: 3
 --- !u!212 &1749454414
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -323,13 +323,13 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 9
-    height: 16
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
