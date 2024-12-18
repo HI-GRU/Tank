@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer skin;
     [SerializeField] private float rotationSpeed; // 회전 속도 (도/초)
     [SerializeField] private float moveSpeed;
+    private PolygonCollider2D playerCollider;
 
     private void Awake()
     {
@@ -54,10 +55,16 @@ public class Player : MonoBehaviour
     {
         Sprite selectedSkin = SkinManager.Instance.GetCurrentSkin();
         skin.sprite = selectedSkin;
+        SetCollider();
     }
 
     public void ChangeSkin(Sprite newSkin)
     {
         skin.sprite = newSkin;
+    }
+
+    private void SetCollider()
+    {
+        playerCollider = gameObject.AddComponent<PolygonCollider2D>();
     }
 }
