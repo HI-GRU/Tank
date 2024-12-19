@@ -7,24 +7,23 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Option")]
     // [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float fireRate = 2F;
-    [SerializeField] private float bulletSpeed = 5F;
     [SerializeField] private float rotationSpeed = 1F;
 
     private float fireTimer = 0F;
 
     [Header("Alive Option")]
     [SerializeField] private float lifeTime = 20F;
-    [SerializeField] private float fadeTime = 1F;
-    private bool isFading = false;
+    private LifeTimeController lifeTimeController;
 
     private void Start()
     {
-        StartCoroutine(LifetimeRoutine());
+        lifeTimeController = GetComponent<LifeTimeController>();
+        StartCoroutine(lifeTimeController.LifetimeRoutine(lifeTime));
     }
 
     private void Update()
     {
-        if (Player.Instance == null || isFading) return;
+        if (Player.Instance == null || lifeTimeController.isFading) return;
 
         fireTimer += Time.deltaTime;
 
@@ -39,6 +38,7 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
+        // TODO: 총알 발사 로직 구현
         Debug.Log("Fire !!!");
     }
 
@@ -51,30 +51,5 @@ public class Enemy : MonoBehaviour
         float angle = Mathf.LerpAngle(currentAngle, targetAngle, rotationSpeed * Time.deltaTime);
 
         transform.rotation = Quaternion.Euler(0F, 0F, angle);
-    }
-
-    private IEnumerator LifetimeRoutine()
-    {
-        yield return new WaitForSeconds(lifeTime);
-
-        isFading = true;
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Color originalColor = spriteRenderer.color;
-
-        float elapsedTime = 0F;
-        while (elapsedTime < fadeTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float normalizedTime = elapsedTime / fadeTime;
-            spriteRenderer.color = new Color(
-                originalColor.r,
-                originalColor.g,
-                originalColor.b,
-                Mathf.Lerp(1, 0, normalizedTime)
-            );
-            yield return null;
-        }
-
-        Destroy(gameObject);
     }
 }
