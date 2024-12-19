@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private float lifeTime;
+    private LifeTimeController lifeTimeController;
+
+    private void Awake()
     {
-        
+        lifeTime = Random.Range(10F, 20F);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
+        lifeTimeController = GetComponent<LifeTimeController>();
+        StartCoroutine(lifeTimeController.LifetimeRoutine(lifeTime));
+    }
+
+    private void Update()
+    {
+        if (Player.Instance == null || lifeTimeController.isFading) return;
         
     }
 }

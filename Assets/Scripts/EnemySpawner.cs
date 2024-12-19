@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,8 +34,8 @@ public class EnemySpawner : MonoBehaviour
         if (isSpawning) return;
         isSpawning = true;
 
-        int spawnSide = UnityEngine.Random.Range(0, 8);
-        int size = UnityEngine.Random.Range(minEnemies, maxEnemies);
+        int spawnSide = Random.Range(0, 8);
+        int size = Random.Range(minEnemies, maxEnemies);
 
         while (size-- > 0)
         {
@@ -48,8 +47,8 @@ public class EnemySpawner : MonoBehaviour
     }
     private Vector2 GetRandomPosition(int spawnSide)
     {
-        float x = UnityEngine.Random.Range(di[spawnSide] + distanceRate, di[spawnSide] + 1 - distanceRate);
-        float y = UnityEngine.Random.Range(dj[spawnSide] + distanceRate, dj[spawnSide] + 1 - distanceRate);
+        float x = Random.Range(di[spawnSide] + distanceRate, di[spawnSide] + 1 - distanceRate);
+        float y = Random.Range(dj[spawnSide] + distanceRate, dj[spawnSide] + 1 - distanceRate);
 
         return mainCamera.ViewportToWorldPoint(new Vector3(x, y, 0));
     }

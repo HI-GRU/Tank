@@ -25,15 +25,14 @@ public class Enemy : MonoBehaviour
     {
         if (Player.Instance == null || lifeTimeController.isFading) return;
 
-        fireTimer += Time.deltaTime;
+        RotateEnemy();
 
+        fireTimer += Time.deltaTime;
         if (fireTimer >= fireRate)
         {
             Attack();
             fireTimer = 0F;
         }
-
-        RotateEnemy();
     }
 
     private void Attack()
