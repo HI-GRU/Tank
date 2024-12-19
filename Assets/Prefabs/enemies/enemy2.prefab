@@ -97,3 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c016bba5664568148a6150718bbe2300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 2
+  bulletSpeed: 5
+  rotationSpeed: 1
+  lifeTime: 20
+  fadeTime: 1

@@ -199,8 +199,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5307465824311288710, guid: e362cba23837fcb4db53c80793837e9a,
     type: 3}
-  spawnRadius: 15
-  spawnInterval: 3
+  distanceRate: 0.3
+  minEnemies: 1
+  maxEnemies: 4
 --- !u!4 &514884850
 Transform:
   m_ObjectHideFlags: 0
@@ -245,6 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e7bd32d4864b24da60ad146a9b59f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!4 &1240214725
 Transform:
   m_ObjectHideFlags: 0
@@ -306,8 +308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skin: {fileID: 1749454414}
-  rotationSpeed: 120
-  moveSpeed: 3
+  rotationSpeed: 150
+  moveSpeed: 7.5
 --- !u!212 &1749454414
 SpriteRenderer:
   m_ObjectHideFlags: 0

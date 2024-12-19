@@ -1,58 +1,68 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Spawning Option")]
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private float spawnRadius = 15F;    // 생성 반경
-    [SerializeField] private float spawnInterval = 3F;   // 생성 간격
+    [SerializeField] private float distanceRate = 0.3F;
+    [SerializeField] private int minEnemies = 1;
+    [SerializeField] private int maxEnemies = 4;
+
+    private List<GameObject> enemies;
+    private int[] di = { -1, -1, 0, 1, 1, 1, 0, -1 };
+    private int[] dj = { 0, 1, 1, 1, 0, -1, -1, -1 };
+    private bool isSpawning = false;
 
     private Camera mainCamera;
-    private float timer = 0f;
-
     private void Start()
     {
-        mainCamera = Camera.main;
+        mainCamera = GameManager.Instance.mainCamera;
+        enemies = new List<GameObject>();
     }
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= spawnInterval)
+        if (CanSpawn())
         {
-            SpawnEnemy();
-            timer = 0f;
+            SpawnEnemies();
         }
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemies()
     {
-        // 플레이어 주변 랜덤한 위치 계산
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
-        Vector3 playerPosition = Player.Instance.transform.position;
-        Vector3 spawnPosition = playerPosition + new Vector3(randomDirection.x, randomDirection.y, 0F) * spawnRadius;
+        if (isSpawning) return;
+        isSpawning = true;
 
-        // 화면에 보이는 위치인지 확인
-        Vector3 viewportPoint = mainCamera.WorldToViewportPoint(spawnPosition);
-        if (viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
-            viewportPoint.y >= 0 && viewportPoint.y <= 1)
+        int spawnSide = UnityEngine.Random.Range(0, 8);
+        int size = UnityEngine.Random.Range(minEnemies, maxEnemies);
+
+        while (size-- > 0)
         {
-            // 화면 안에 있으면 더 멀리 생성
-            spawnPosition = playerPosition + new Vector3(randomDirection.x, randomDirection.y, 0f) * (spawnRadius * 1.5f);
+            Vector2 spawnPosition = GetRandomPosition(spawnSide);
+            SpawnEnemy(spawnPosition);
         }
 
-        // 적 생성
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        isSpawning = false;
+    }
+    private Vector2 GetRandomPosition(int spawnSide)
+    {
+        float x = UnityEngine.Random.Range(di[spawnSide] + distanceRate, di[spawnSide] + 1 - distanceRate);
+        float y = UnityEngine.Random.Range(dj[spawnSide] + distanceRate, dj[spawnSide] + 1 - distanceRate);
+
+        return mainCamera.ViewportToWorldPoint(new Vector3(x, y, 0));
     }
 
-    // Editor에서 생성 반경을 시각적으로 확인하기 위한 기즈모
-    private void OnDrawGizmosSelected()
+    private void SpawnEnemy(Vector2 position)
     {
-        Gizmos.color = Color.red;
-        if (Player.Instance != null)
-        {
-            Gizmos.DrawWireSphere(Player.Instance.transform.position, spawnRadius);
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(Player.Instance.transform.position, spawnRadius * 1.5f);
-        }
+        GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+        enemies.Add(enemy);
+    }
+
+    private bool CanSpawn()
+    {
+        enemies.RemoveAll(enemy => enemy == null);
+        return !isSpawning && enemies.Count == 0;
     }
 }
