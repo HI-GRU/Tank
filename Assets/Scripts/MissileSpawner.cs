@@ -6,10 +6,7 @@ public class MissileSpawner : MonoBehaviour
 {
     [Header("Spawning Option")]
     [SerializeField] private GameObject missilePrefab;
-    [SerializeField] private int maxMissiles = 3;
-    private float spawnInterval;
     private float spawnDistance;
-    private float spawnTimer = 0F;
 
     private Camera mainCamera;
     private List<GameObject> missiles;
@@ -22,21 +19,17 @@ public class MissileSpawner : MonoBehaviour
     private void Start()
     {
         mainCamera = GameManager.Instance.mainCamera;
-        spawnDistance = mainCamera.orthographicSize * 1.5F;
-        spawnInterval = 3F;
+        spawnDistance = mainCamera.orthographicSize * 3F;
     }
 
     private void Update()
     {
         if (Player.Instance == null) return;
-        if (maxMissiles <= missiles.Count) return;
 
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnInterval)
+        if (CanSpawn())
         {
-            SpawnMissile();
-            spawnTimer = 0F;
-            spawnInterval = Random.Range(1F, 5F);
+            int rand = Random.Range(1, 4);
+            while (rand-- > 0) SpawnMissile();
         }
     }
 
@@ -52,5 +45,11 @@ public class MissileSpawner : MonoBehaviour
 
         GameObject missile = Instantiate(missilePrefab, spawnPosition, rotation);
         missiles.Add(missile);
+    }
+
+    private bool CanSpawn()
+    {
+        missiles.RemoveAll(missile => missile == null);
+        return missiles.Count == 0;
     }
 }

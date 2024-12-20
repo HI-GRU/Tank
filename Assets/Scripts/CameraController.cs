@@ -2,26 +2,24 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player;
-    public float lerpSpeed = 1.0F;
-
+    // public float lerpSpeed = 1.0F;
     private Vector3 offset;
-
-    private Vector3 targetPos;
+    // private Vector3 targetPos;
 
     private void Start()
     {
-        if (player == null) return;
+        if (Player.Instance == null) return;
 
-        offset = transform.position - player.transform.position;
+        offset = transform.position - Player.Instance.transform.position;
     }
 
     private void Update()
     {
-        if (player == null) return;
+        if (Player.Instance == null) return;
 
-        targetPos = player.transform.position + offset;
-        transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
+        // targetPos = Player.Instance.transform.position + offset;
+        // transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
+
+        gameObject.transform.position = Player.Instance.transform.position + offset;
     }
 }
