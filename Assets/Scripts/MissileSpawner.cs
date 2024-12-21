@@ -6,6 +6,8 @@ public class MissileSpawner : MonoBehaviour
 {
     [Header("Spawning Option")]
     [SerializeField] private GameObject missilePrefab;
+    [SerializeField] private int minMissileCount;
+    [SerializeField] private int maxMissileCount;
     private float spawnDistance;
 
     private Camera mainCamera;
@@ -41,9 +43,9 @@ public class MissileSpawner : MonoBehaviour
         isSpawning = true;
 
         int spawnSide = Random.Range(0, 8);
-        int size = Random.Range(1, 4);
+        int cnt = Random.Range(minMissileCount, maxMissileCount + 1);
 
-        while (size-- > 0)
+        while (cnt-- > 0)
         {
             Vector2 spawnPosition = GetRandomPosition(spawnSide);
             SpawnMissile(spawnPosition);
