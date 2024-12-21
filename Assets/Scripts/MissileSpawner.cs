@@ -10,6 +10,9 @@ public class MissileSpawner : MonoBehaviour
 
     private Camera mainCamera;
     private List<GameObject> missiles;
+    private int[] di = { -1, -1, 0, 1, 1, 1, 0, -1 };
+    private int[] dj = { 0, 1, 1, 1, 0, -1, -1, -1 };
+    private bool isSpawning = false;
 
     private void Awake()
     {
@@ -28,28 +31,46 @@ public class MissileSpawner : MonoBehaviour
 
         if (CanSpawn())
         {
-            int rand = Random.Range(1, 4);
-            while (rand-- > 0) SpawnMissile();
+            StartCoroutine(SpawnMissiles());
         }
     }
 
-    private void SpawnMissile()
+    private IEnumerator SpawnMissiles()
     {
-        float angle = Random.Range(0F, 360F);
-        Vector2 spawnPosition = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * spawnDistance
-         + (Vector2)Player.Instance.transform.position;
+        if (isSpawning) yield break;
+        isSpawning = true;
 
-        Vector2 dir = ((Vector2)Player.Instance.transform.position - spawnPosition).normalized;
-        float rotationAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90F;
-        Quaternion rotation = Quaternion.Euler(0F, 0F, rotationAngle);
+        int spawnSide = Random.Range(0, 8);
+        int size = Random.Range(1, 4);
 
-        GameObject missile = Instantiate(missilePrefab, spawnPosition, rotation);
+        while (size-- > 0)
+        {
+            Vector2 spawnPosition = GetRandomPosition(spawnSide);
+            SpawnMissile(spawnPosition);
+            float delay = Random.Range(0.5F, 1F);
+            yield return new WaitForSeconds(delay);
+        }
+
+        isSpawning = false;
+    }
+
+    private Vector2 GetRandomPosition(int spawnSide)
+    {
+        float x = Random.Range(di[spawnSide], di[spawnSide] + 1);
+        float y = Random.Range(dj[spawnSide], dj[spawnSide] + 1);
+
+        return mainCamera.ViewportToWorldPoint(new Vector3(x, y, 0));
+    }
+
+    private void SpawnMissile(Vector2 position)
+    {
+        GameObject missile = Instantiate(missilePrefab, position, Quaternion.identity);
         missiles.Add(missile);
     }
 
     private bool CanSpawn()
     {
         missiles.RemoveAll(missile => missile == null);
-        return missiles.Count == 0;
+        return !isSpawning && missiles.Count == 0;
     }
 }

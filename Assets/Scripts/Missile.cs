@@ -2,16 +2,24 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
-    private float lifeTime;
     private LifeTimeController lifeTimeController;
 
     [Header("Missile Option")]
-    [SerializeField] private float speed = 10F;
-    [SerializeField] private float rotationSpeed = 180F;
+    [SerializeField] private float minLifeTime;
+    [SerializeField] private float maxLifeTime;
+    [SerializeField] private float minSpeed;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float minRotationSpeed;
+    [SerializeField] private float maxRotationSpeed;
+    private float lifeTime;
+    private float speed;
+    private float rotationSpeed;
 
     private void Awake()
     {
-        lifeTime = Random.Range(10F, 15F);
+        lifeTime = Random.Range(minLifeTime, maxLifeTime);
+        speed = Random.Range(minSpeed, maxSpeed);
+        rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed);
     }
 
     private void Start()
