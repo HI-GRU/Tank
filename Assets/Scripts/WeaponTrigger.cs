@@ -7,6 +7,7 @@ public class WeaponTrigger : MonoBehaviour
     [SerializeField] private GameObject explosionParticlePrefab;
     [SerializeField] private float playerExplosionSize;
     [SerializeField] private float weaponExplosionSize;
+    [SerializeField] private float obstacleExplosionSize;
 
     Vector2 collisionPoint;
 
@@ -25,27 +26,40 @@ public class WeaponTrigger : MonoBehaviour
             HandleWeaponCollision(other);
             return;
         }
+
+        if (other.CompareTag("Obstacle"))
+        {
+            HandleObstacleCollision(other);
+            return;
+        }
     }
 
     private void HandlePlayerCollision(Collider2D playerSkin)
     {
-        Explosion(collisionPoint, playerExplosionSize);
-        Destroy(playerSkin.GetComponentInParent<Player>().gameObject);
+        Explosion(playerExplosionSize);
         Destroy(gameObject);
+        Destroy(playerSkin.GetComponentInParent<Player>().gameObject);
     }
 
     private void HandleWeaponCollision(Collider2D otherWeapon)
     {
-        Explosion(collisionPoint, weaponExplosionSize);
-        Destroy(otherWeapon.gameObject);
+        Explosion(weaponExplosionSize);
         Destroy(gameObject);
+        Destroy(otherWeapon.gameObject);
     }
 
-    private void Explosion(Vector3 position, float scale)
+    private void HandleObstacleCollision(Collider2D obstacle)
+    {
+        Explosion(obstacleExplosionSize);
+        Destroy(gameObject);
+        obstacle.GetComponentInParent<Obstacle>().Damaged();
+    }
+
+    private void Explosion(float scale)
     {
         if (explosionParticlePrefab != null)
         {
-            GameObject effect = Instantiate(explosionParticlePrefab, position, Quaternion.identity);
+            GameObject effect = Instantiate(explosionParticlePrefab, collisionPoint, Quaternion.identity);
             effect.transform.localScale = Vector3.one * scale;
         }
     }
