@@ -103,8 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minLifeTime: 20
   maxLifeTime: 25
-  minSpeed: 8
-  maxSpeed: 9
+  minSpeed: 9
+  maxSpeed: 10
   minRotationSpeed: 120
   maxRotationSpeed: 130
 --- !u!114 &3821110514730794545
@@ -218,6 +218,7 @@ MonoBehaviour:
     type: 3}
   playerExplosionSize: 1
   weaponExplosionSize: 0.5
+  obstacleExplosionSize: 0
 --- !u!50 &2848777882381404156
 Rigidbody2D:
   serializedVersion: 4
