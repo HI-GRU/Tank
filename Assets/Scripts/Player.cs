@@ -6,10 +6,10 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
 
-    [SerializeField] private SpriteRenderer skin;
+    [Header("Player Option")]
+    private GameObject currentSkinObject;
     [SerializeField] private float rotationSpeed; // 회전 속도 (도/초)
     [SerializeField] private float moveSpeed;
-    private PolygonCollider2D playerCollider;
 
     private void Awake()
     {
@@ -53,18 +53,19 @@ public class Player : MonoBehaviour
 
     private void LoadCurrentSkin()
     {
-        Sprite selectedSkin = SkinManager.Instance.GetCurrentSkin();
-        skin.sprite = selectedSkin;
-        SetCollider();
+        GameObject skinPrefab = SkinManager.Instance.GetCurrentSkin();
+        currentSkinObject = Instantiate(skinPrefab, transform);
+        currentSkinObject.transform.localPosition = Vector3.zero;
     }
 
-    public void ChangeSkin(Sprite newSkin)
+    public void ChangeSkin(GameObject newSkinPrefab)
     {
-        skin.sprite = newSkin;
-    }
+        if (currentSkinObject != null)
+        {
+            Destroy(currentSkinObject);
+        }
 
-    private void SetCollider()
-    {
-        playerCollider = gameObject.AddComponent<PolygonCollider2D>();
+        currentSkinObject = Instantiate(newSkinPrefab, transform);
+        currentSkinObject.transform.localPosition = Vector3.zero;
     }
 }
