@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c1d2e8733c5545149ac4fdb77f4d264a
+guid: ee3508c7ef94b9248a25d12d792c120e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 2
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,12 +48,12 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 116
+  spritePixelsToUnits: 105
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0.74
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -123,10 +123,51 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-    physicsShape: []
+    physicsShape:
+    - - {x: 13.5, y: -52.5}
+      - {x: 23.5, y: -49.5}
+      - {x: 27.5, y: -45.5}
+      - {x: 32.5, y: -35.5}
+      - {x: 37.5, y: -18.5}
+      - {x: 37.5, y: -5.5}
+      - {x: 37.5, y: -5.5}
+      - {x: 29.5, y: 1.5}
+      - {x: 22.5, y: 5.5}
+      - {x: 16.5, y: 5.5}
+      - {x: 13.5, y: 0.5}
+      - {x: 7.5, y: 4.5}
+      - {x: 4.5, y: 5.5}
+      - {x: 2.5, y: 6.5}
+      - {x: 3.5, y: 33.5}
+      - {x: 3.5, y: 43.5}
+      - {x: 4.5, y: 44.5}
+      - {x: 4.5, y: 49.5}
+      - {x: 4.5, y: 52.5}
+      - {x: -4.5, y: 52.5}
+      - {x: -4.5, y: 44.5}
+      - {x: -3.5, y: 43.5}
+      - {x: -3.5, y: 33.5}
+      - {x: -2.5, y: 6.5}
+      - {x: -4.5, y: 5.5}
+      - {x: -7.5, y: 4.5}
+      - {x: -13.5, y: 0.5}
+      - {x: -16.5, y: 5.5}
+      - {x: -21.5, y: 5.5}
+      - {x: -29.5, y: 1.5}
+      - {x: -37.5, y: -5.5}
+      - {x: -37.5, y: -18.5}
+      - {x: -32.5, y: -35.5}
+      - {x: -27.5, y: -45.5}
+      - {x: -22.5, y: -49.5}
+      - {x: -12.5, y: -52.5}
+      - {x: -9.5, y: -50.5}
+      - {x: -8.5, y: -48.5}
+      - {x: 0.5, y: -48.5}
+      - {x: 8.5, y: -48.5}
+      - {x: 9.5, y: -50.5}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []

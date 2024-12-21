@@ -214,6 +214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8c8573f1ef30c45a7c96646a7ed2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionParticlePrefab: {fileID: 1546897667432260974, guid: 9e8fbbdbe7487924fb7c07a7087dfc20,
+    type: 3}
+  playerExplosionSize: 1
+  weaponExplosionSize: 0.5
 --- !u!50 &2848777882381404156
 Rigidbody2D:
   serializedVersion: 4
