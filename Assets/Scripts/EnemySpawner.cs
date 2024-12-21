@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+[Obsolete("Enemy Deleted")]
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawning Option")]

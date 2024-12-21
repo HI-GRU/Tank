@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
+[Obsolete("Enemy Deleted")]
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Option")]
