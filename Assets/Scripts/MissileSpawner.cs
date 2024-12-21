@@ -27,7 +27,7 @@ public class MissileSpawner : MonoBehaviour
         spawnDistance = mainCamera.orthographicSize * 3F;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Player.Instance == null) return;
 
@@ -73,6 +73,6 @@ public class MissileSpawner : MonoBehaviour
     private bool CanSpawn()
     {
         missiles.RemoveAll(missile => missile == null);
-        return !isSpawning && missiles.Count == 0;
+        return !isSpawning && missiles.Count <= 1;
     }
 }

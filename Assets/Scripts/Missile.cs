@@ -28,14 +28,26 @@ public class Missile : MonoBehaviour
         StartCoroutine(lifeTimeController.LifetimeRoutine(lifeTime));
     }
 
+    private void Update()
+    {
+        if (Player.Instance == null || lifeTimeController.isFading) return;
+        Move();
+    }
+
     private void FixedUpdate()
     {
         if (Player.Instance == null || lifeTimeController.isFading) return;
-        Attack();
+        SetDirection();
     }
 
-    private void Attack()
+    private void Move()
     {
+        transform.position += transform.up * speed * Time.deltaTime;
+    }
+
+    private void SetDirection()
+    {
+        // TODO: 방향 조정에 어느정도 랜덤값 부여 ?
         Vector2 dir = (Player.Instance.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90F;
         transform.rotation = Quaternion.RotateTowards(
@@ -43,7 +55,5 @@ public class Missile : MonoBehaviour
             Quaternion.Euler(0F, 0F, angle),
             rotationSpeed * Time.fixedDeltaTime
         );
-
-        transform.position += transform.up * speed * Time.fixedDeltaTime;
     }
 }
