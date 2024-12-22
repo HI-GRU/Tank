@@ -27,7 +27,7 @@ public class WeaponTrigger : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag("Obstacle"))
+        if (other.CompareTag("Obstacle Skin"))
         {
             HandleObstacleCollision(other);
             return;

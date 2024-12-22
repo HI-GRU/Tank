@@ -4,11 +4,69 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+    [Header("Spawning Option")]
+    [SerializeField] private float spawnInterval;
+    [SerializeField] private int maxObstacleCount;
+
     [Header("Obstacles Option")]
     [SerializeField] private int numOfTypes;
     [SerializeField] private List<GameObject> pyramids;
+    // [SerializeField] private List<GameObject> sphinxes; // 추후 추가시 추가
+
     private int type;
     private List<GameObject> currentType;
+
+    private Camera mainCamera;
+    private List<GameObject> obstacles;
+    private int[] di = { -1, -1, 0, 1, 1, 1, 0, -1 };
+    private int[] dj = { 0, 1, 1, 1, 0, -1, -1, -1 };
+    private bool isSpawning = false;
+
+    private void Start()
+    {
+        mainCamera = GameManager.Instance.mainCamera;
+        obstacles = new List<GameObject>();
+        StartCoroutine(SpawnObstacles());
+    }
+
+    private IEnumerator SpawnObstacles()
+    {
+        if (CanSpawn())
+        {
+            SpawnObstacle();
+        }
+
+        yield return new WaitForSeconds(spawnInterval);
+    }
+
+    private void SpawnObstacle()
+    {
+        if (isSpawning) return;
+        isSpawning = true;
+
+        SetType();
+
+        int spawnSide = Random.Range(0, 8);
+        Vector2 spawnPosition = GetRandomPosition(spawnSide);
+        GameObject obstaclObj = new GameObject("obstacle");
+        obstaclObj.transform.position = spawnPosition;
+
+        obstaclObj.AddComponent<LifeTimeController>();
+        Obstacle obstacle = obstaclObj.AddComponent<Obstacle>();
+        obstacle.Initialize(currentType);
+
+        obstacles.Add(obstaclObj);
+
+        isSpawning = false;
+    }
+
+    private Vector2 GetRandomPosition(int spawnSide)
+    {
+        float x = Random.Range(di[spawnSide], di[spawnSide] + 1);
+        float y = Random.Range(dj[spawnSide], dj[spawnSide] + 1);
+
+        return mainCamera.ViewportToWorldPoint(new Vector3(x, y, 0));
+    }
 
     private void SetType()
     {
@@ -22,5 +80,11 @@ public class ObstacleSpawner : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private bool CanSpawn()
+    {
+        obstacles.RemoveAll(obstacle => obstacle == null);
+        return !isSpawning && obstacles.Count < maxObstacleCount;
     }
 }

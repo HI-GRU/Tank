@@ -200,7 +200,8 @@ MonoBehaviour:
   missilePrefab: {fileID: 6368970826878767262, guid: a3b7cbbf66b379d43b796c80cb5dc22f,
     type: 3}
   minMissileCount: 1
-  maxMissileCount: 3
+  maxMissileCount: 1
+  spawnDistanceRate: 2
 --- !u!4 &408674380
 Transform:
   m_ObjectHideFlags: 0
@@ -360,6 +361,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1867908104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1867908106}
+  - component: {fileID: 1867908105}
+  m_Layer: 0
+  m_Name: ObstacleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1867908105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867908104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be1c6ed37c565944ae8964f9c486e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInterval: 15
+  maxObstacleCount: 5
+  numOfTypes: 1
+  pyramids:
+  - {fileID: 8281556541388582451, guid: 678497fd9e199cc45aaa0ea00e56db65, type: 3}
+  - {fileID: 8159956855187854188, guid: 768b7404fe81b5c4087e4f837ff02532, type: 3}
+  - {fileID: 574275198287359362, guid: e29bfd1f2f7f02e4ebba9d754de225ad, type: 3}
+  - {fileID: 6713120145694702887, guid: dbaf1727ef5fe8744b255068212ed0e3, type: 3}
+--- !u!4 &1867908106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867908104}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.9422424, y: 133.26839, z: -10.326746}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1891893398
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,3 +698,4 @@ SceneRoots:
   - {fileID: 1986395334}
   - {fileID: 1240214725}
   - {fileID: 408674380}
+  - {fileID: 1867908106}

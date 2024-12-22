@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Weapon
   - Player Skin
+  - Obstacle Skin
   layers:
   - Default
   - TransparentFX

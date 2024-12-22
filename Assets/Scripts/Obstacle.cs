@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [Header("Obstacle Option")]
-    [SerializeField] private int numOfTypes;
-    [SerializeField] private List<GameObject> pyramids;
     private int health;
-    private int type;
     private bool isDestroyed = false;
-    private List<GameObject> currentType;
+    private List<GameObject> obstacleType;
     private GameObject currentObject;
-    private LifeTimeController lifeTimeController;
 
-    private void Start()
+    public void Initialize(List<GameObject> type)
     {
-        SetType();
-        health = currentType.Count - 1;
+        obstacleType = type;
+        health = obstacleType.Count - 1;
         SetCurrentObject();
     }
 
@@ -25,9 +20,9 @@ public class Obstacle : MonoBehaviour
     {
         if (currentObject != null) Destroy(currentObject);
 
-        if (health >= 0 && health < currentType.Count)
+        if (health >= 0 && health < obstacleType.Count)
         {
-            currentObject = Instantiate(currentType[health], transform);
+            currentObject = Instantiate(obstacleType[health], transform);
             currentObject.transform.localPosition = Vector3.zero;
         }
     }
@@ -35,27 +30,21 @@ public class Obstacle : MonoBehaviour
     public void Damaged()
     {
         if (isDestroyed) return;
+        health--;
 
         SetCurrentObject();
 
         if (health == 0)
         {
             isDestroyed = true;
-            StartCoroutine(lifeTimeController.LifetimeRoutine(2F));
+            LifeTimeController lifeTimeController = currentObject.AddComponent<LifeTimeController>();
+            StartCoroutine(WaitForDestroy(lifeTimeController));
         }
     }
 
-    private void SetType()
+    private IEnumerator WaitForDestroy(LifeTimeController controller)
     {
-        type = Random.Range(1, numOfTypes);
-
-        switch (type)
-        {
-            case 1:
-                currentType = pyramids;
-                break;
-            default:
-                break;
-        }
+        yield return StartCoroutine(controller.LifetimeRoutine(2F));
+        Destroy(gameObject);
     }
 }
