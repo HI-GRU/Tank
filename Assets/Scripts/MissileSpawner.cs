@@ -31,11 +31,7 @@ public class MissileSpawner : MonoBehaviour
     private void FixedUpdate()
     {
         if (Player.Instance == null) return;
-
-        if (CanSpawn())
-        {
-            StartCoroutine(SpawnMissiles());
-        }
+        if (CanSpawn()) StartCoroutine(SpawnMissiles());
     }
 
     private IEnumerator SpawnMissiles()

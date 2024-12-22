@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: -357239825594138289}
   - component: {fileID: 3821110514730794545}
   - component: {fileID: 2059310609155788718}
-  - component: {fileID: 425467118818367003}
   - component: {fileID: 2848777882381404156}
+  - component: {fileID: 425467118818367003}
   m_Layer: 0
   m_Name: missile
   m_TagString: Weapon
@@ -202,23 +202,6 @@ PolygonCollider2D:
       - {x: 0.011997869, y: -0.110936016}
       - {x: 0.070474274, y: -0.13615392}
   m_UseDelaunayMesh: 0
---- !u!114 &425467118818367003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6368970826878767262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d8c8573f1ef30c45a7c96646a7ed2ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionParticlePrefab: {fileID: 1546897667432260974, guid: 9e8fbbdbe7487924fb7c07a7087dfc20,
-    type: 3}
-  playerExplosionSize: 1
-  weaponExplosionSize: 0.5
-  obstacleExplosionSize: 0.75
 --- !u!50 &2848777882381404156
 Rigidbody2D:
   serializedVersion: 4
@@ -246,3 +229,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &425467118818367003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6368970826878767262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8c8573f1ef30c45a7c96646a7ed2ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionParticlePrefab: {fileID: 1546897667432260974, guid: 9e8fbbdbe7487924fb7c07a7087dfc20,
+    type: 3}
+  playerExplosionSize: 1
+  weaponExplosionSize: 0.5
+  obstacleExplosionSize: 0.75

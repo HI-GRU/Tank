@@ -11,6 +11,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float rotationSpeed; // 회전 속도 (도/초)
     [SerializeField] private float moveSpeed;
 
+    private float knockbackDuration;
+    private bool isKnockedBack = false;
+    private float knockbackTime;
+    private Vector2 knockbackForce;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -23,6 +28,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (isKnockedBack)
+        {
+            HandleKnockback();
+            return;
+        }
+
         // if (Input.touchCount > 0)
         // {
         //     Touch touch = Input.GetTouch(0);
@@ -67,5 +78,28 @@ public class Player : MonoBehaviour
 
         currentSkinObject = Instantiate(newSkinPrefab, transform);
         currentSkinObject.transform.localPosition = Vector3.zero;
+    }
+
+    private void HandleKnockback()
+    {
+        knockbackTime += Time.deltaTime;
+        if (knockbackTime >= knockbackDuration)
+        {
+            isKnockedBack = false;
+            knockbackTime = 0F;
+            return;
+        }
+
+        float deceleration = 1F - (knockbackTime / knockbackDuration);
+        Vector2 force = knockbackForce * deceleration;
+        transform.position += (Vector3)force * Time.deltaTime;
+    }
+
+    public void ApplyKnockback(Vector2 force, float duration)
+    {
+        knockbackForce = force;
+        knockbackDuration = duration;
+        isKnockedBack = true;
+        knockbackTime = 0F;
     }
 }

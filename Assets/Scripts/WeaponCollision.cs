@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class WeaponTrigger : MonoBehaviour
+public class WeaponCollision : MonoBehaviour
 {
     [Header("Explosion Option")]
     [SerializeField] private GameObject explosionParticlePrefab;

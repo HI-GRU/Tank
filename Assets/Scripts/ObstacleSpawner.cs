@@ -12,10 +12,10 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private int numOfTypes;
     [SerializeField] private List<GameObject> pyramids;
     // [SerializeField] private List<GameObject> sphinxes; // 추후 추가시 추가
+    [SerializeField] private float minDistance;
 
     private int type;
     private List<GameObject> currentType;
-
     private Camera mainCamera;
     private List<GameObject> obstacles;
     private float[] di = { -1, -1, 0, 1, 1, 1, 0, -1, 0 };
@@ -31,16 +31,12 @@ public class ObstacleSpawner : MonoBehaviour
     private void FixedUpdate()
     {
         if (Player.Instance == null) return;
-
-        if (CanSpawn())
-        {
-            StartCoroutine(SpawnObstacles());
-        }
+        if (CanSpawn()) StartCoroutine(SpawnObstacles());
     }
 
     private IEnumerator SpawnObstacles()
     {
-        if (CanSpawn()) SpawnObstacle();
+        SpawnObstacle();
         yield return new WaitForSeconds(spawnInterval);
     }
 
@@ -53,6 +49,13 @@ public class ObstacleSpawner : MonoBehaviour
 
         int spawnSide = Random.Range(0, 9);
         Vector2 spawnPosition = GetRandomPosition(spawnSide);
+
+        if (!IsValidPosition(spawnPosition))
+        {
+            isSpawning = false;
+            return;
+        }
+
         GameObject obstaclObj = new GameObject("obstacle");
         obstaclObj.transform.position = spawnPosition;
 
@@ -71,6 +74,12 @@ public class ObstacleSpawner : MonoBehaviour
         float y = Random.Range(dj[spawnSide], dj[spawnSide] + 1);
 
         return mainCamera.ViewportToWorldPoint(new Vector3(x, y, 0));
+    }
+
+    private bool IsValidPosition(Vector2 position)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, minDistance);
+        return colliders.Length == 0;
     }
 
     private void SetType()
