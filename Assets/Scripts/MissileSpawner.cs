@@ -13,8 +13,8 @@ public class MissileSpawner : MonoBehaviour
 
     private Camera mainCamera;
     private List<GameObject> missiles;
-    private int[] di = { -1, -1, 0, 1, 1, 1, 0, -1 };
-    private int[] dj = { 0, 1, 1, 1, 0, -1, -1, -1 };
+    private float[] di = { -1, -1, 0, 1, 1, 1, 0, -1 };
+    private float[] dj = { 0, 1, 1, 1, 0, -1, -1, -1 };
     private bool isSpawning = false;
 
     private void Awake()

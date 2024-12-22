@@ -18,24 +18,29 @@ public class ObstacleSpawner : MonoBehaviour
 
     private Camera mainCamera;
     private List<GameObject> obstacles;
-    private int[] di = { -1, -1, 0, 1, 1, 1, 0, -1 };
-    private int[] dj = { 0, 1, 1, 1, 0, -1, -1, -1 };
+    private float[] di = { -1, -1, 0, 1, 1, 1, 0, -1, 0 };
+    private float[] dj = { 0, 1, 1, 1, 0, -1, -1, -1, 0 };
     private bool isSpawning = false;
 
     private void Start()
     {
         mainCamera = GameManager.Instance.mainCamera;
         obstacles = new List<GameObject>();
-        StartCoroutine(SpawnObstacles());
+    }
+
+    private void FixedUpdate()
+    {
+        if (Player.Instance == null) return;
+
+        if (CanSpawn())
+        {
+            StartCoroutine(SpawnObstacles());
+        }
     }
 
     private IEnumerator SpawnObstacles()
     {
-        if (CanSpawn())
-        {
-            SpawnObstacle();
-        }
-
+        if (CanSpawn()) SpawnObstacle();
         yield return new WaitForSeconds(spawnInterval);
     }
 
@@ -46,7 +51,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         SetType();
 
-        int spawnSide = Random.Range(0, 8);
+        int spawnSide = Random.Range(0, 9);
         Vector2 spawnPosition = GetRandomPosition(spawnSide);
         GameObject obstaclObj = new GameObject("obstacle");
         obstaclObj.transform.position = spawnPosition;
