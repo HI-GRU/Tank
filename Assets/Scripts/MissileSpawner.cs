@@ -8,6 +8,7 @@ public class MissileSpawner : MonoBehaviour
     [SerializeField] private GameObject missilePrefab;
     [SerializeField] private int minMissileCount;
     [SerializeField] private int maxMissileCount;
+    [SerializeField] private float spawnDistanceRate;
     private float spawnDistance;
 
     private Camera mainCamera;
@@ -24,7 +25,7 @@ public class MissileSpawner : MonoBehaviour
     private void Start()
     {
         mainCamera = GameManager.Instance.mainCamera;
-        spawnDistance = mainCamera.orthographicSize * 3F;
+        spawnDistance = mainCamera.orthographicSize * spawnDistanceRate;
     }
 
     private void FixedUpdate()
@@ -73,6 +74,6 @@ public class MissileSpawner : MonoBehaviour
     private bool CanSpawn()
     {
         missiles.RemoveAll(missile => missile == null);
-        return !isSpawning && missiles.Count <= 1;
+        return !isSpawning && missiles.Count <= minMissileCount;
     }
 }

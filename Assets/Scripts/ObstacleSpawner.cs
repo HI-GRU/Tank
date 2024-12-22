@@ -8,18 +8,19 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private int numOfTypes;
     [SerializeField] private List<GameObject> pyramids;
     private int type;
+    private List<GameObject> currentType;
 
-    // private void SetType()
-    // {
-    //     type = Random.Range(1, numOfTypes);
+    private void SetType()
+    {
+        type = Random.Range(1, numOfTypes);
 
-    //     switch (type)
-    //     {
-    //         case 1:
-    //             currentType = pyramids;
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
+        switch (type)
+        {
+            case 1:
+                currentType = pyramids;
+                break;
+            default:
+                break;
+        }
+    }
 }
