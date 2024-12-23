@@ -309,7 +309,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 180
   moveSpeed: 7
-  knockbackDuration: 0.5
 --- !u!212 &1749454414
 SpriteRenderer:
   m_ObjectHideFlags: 0
