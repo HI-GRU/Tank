@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TrailEffect : MonoBehaviour
 {
+    [Header("Trail Option")]
     [SerializeField] protected GameObject effectPrefab;
     [SerializeField] private float spawnInterval;
     [SerializeField] private float duration;
@@ -28,6 +29,6 @@ public class TrailEffect : MonoBehaviour
         GameObject trail = Instantiate(effectPrefab, transform.position, transform.rotation);
         trails.Add(trail);
         LifeTimeController lifeTimeController = trail.AddComponent<LifeTimeController>();
-        StartCoroutine(lifeTimeController.LifetimeRoutine(duration, fadeTime));
+        lifeTimeController.StartCoroutine(lifeTimeController.LifetimeRoutine(duration, fadeTime));
     }
 }
