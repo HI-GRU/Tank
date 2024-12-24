@@ -13,4 +13,10 @@ public class GameManager : MonoBehaviour
         if (Instance == null) Instance = this;
         mainCamera = Camera.main;
     }
+
+    public bool IsPointInCamera(Vector2 point)
+    {
+        Vector2 viewport = mainCamera.WorldToViewportPoint(point);
+        return viewport.x >= 0 && viewport.x <= 1 && viewport.y >= 0 && viewport.y <= 1;
+    }
 }

@@ -417,6 +417,10 @@ MonoBehaviour:
   - {fileID: 17336597694216655, guid: e29bfd1f2f7f02e4ebba9d754de225ad, type: 3}
   - {fileID: 7459763892990531375, guid: dbaf1727ef5fe8744b255068212ed0e3, type: 3}
   minDistance: 2
+  destroyDuration: 2
+  destroyFadeTime: 1
+  lifeTime: 30
+  bonusTime: 3
 --- !u!4 &1867908106
 Transform:
   m_ObjectHideFlags: 0

@@ -13,6 +13,10 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> pyramids;
     // [SerializeField] private List<GameObject> sphinxes; // 추후 추가시 추가
     [SerializeField] private float minDistance;
+    [SerializeField] private float destroyDuration;
+    [SerializeField] private float destroyFadeTime;
+    [SerializeField] private float lifeTime;
+    [SerializeField] private float bonusTime;
 
     private int type;
     private List<GameObject> currentType;
@@ -59,9 +63,8 @@ public class ObstacleSpawner : MonoBehaviour
         GameObject obstaclObj = new GameObject("obstacle");
         obstaclObj.transform.position = spawnPosition;
 
-        obstaclObj.AddComponent<LifeTimeController>();
         Obstacle obstacle = obstaclObj.AddComponent<Obstacle>();
-        obstacle.Initialize(currentType);
+        obstacle.Initialize(currentType, destroyDuration, destroyFadeTime, lifeTime, bonusTime);
 
         obstacles.Add(obstaclObj);
 

@@ -9,41 +9,29 @@ public class WeaponCollision : MonoBehaviour
     [SerializeField] private float weaponExplosionSize;
     [SerializeField] private float obstacleExplosionSize;
 
-    private Camera mainCamera;
     Vector2 collisionPoint;
-
-    private void Start()
-    {
-        mainCamera = GameManager.Instance.mainCamera;
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         collisionPoint = other.ClosestPoint(transform.position);
 
-        if (other.CompareTag("Player Skin") && IsPointInCamera(collisionPoint))
+        if (other.CompareTag("Player Skin") && GameManager.Instance.IsPointInCamera(collisionPoint))
         {
             HandlePlayerCollision(other);
             return;
         }
 
-        if (other.CompareTag("Weapon") && IsPointInCamera(collisionPoint))
+        if (other.CompareTag("Weapon") && GameManager.Instance.IsPointInCamera(collisionPoint))
         {
             HandleWeaponCollision(other);
             return;
         }
 
-        if (other.CompareTag("Obstacle Skin") && IsPointInCamera(collisionPoint))
+        if (other.CompareTag("Obstacle Skin") && GameManager.Instance.IsPointInCamera(collisionPoint))
         {
             HandleObstacleCollision(other);
             return;
         }
-    }
-
-    private bool IsPointInCamera(Vector2 point)
-    {
-        Vector2 viewport = mainCamera.WorldToViewportPoint(point);
-        return viewport.x >= 0 && viewport.x <= 1 && viewport.y >= 0 && viewport.y <= 1;
     }
 
     private void HandlePlayerCollision(Collider2D playerSkin)
