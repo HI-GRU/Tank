@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 1749454412}
   - component: {fileID: 1749454413}
   - component: {fileID: 1749454414}
+  - component: {fileID: 1749454415}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -361,6 +362,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1749454415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749454411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e041ddd94c6204ea2805fb593f2e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 8332220679346198452, guid: e496774bd649d764e92ab6d824734699,
+    type: 3}
+  spawnInterval: 0.06
+  duration: 0.3
+  fadeTime: 0.3
 --- !u!1 &1867908104
 GameObject:
   m_ObjectHideFlags: 0

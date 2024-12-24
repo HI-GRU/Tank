@@ -25,7 +25,7 @@ public class Missile : MonoBehaviour
     private void Start()
     {
         lifeTimeController = GetComponent<LifeTimeController>();
-        StartCoroutine(lifeTimeController.LifetimeRoutine(lifeTime));
+        StartCoroutine(lifeTimeController.LifetimeRoutine(lifeTime, 1F));
     }
 
     private void Update()

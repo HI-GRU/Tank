@@ -44,7 +44,7 @@ public class Obstacle : MonoBehaviour
 
     private IEnumerator WaitForDestroy(LifeTimeController controller)
     {
-        yield return StartCoroutine(controller.LifetimeRoutine(2F));
+        yield return StartCoroutine(controller.LifetimeRoutine(2F, 1F));
         Destroy(gameObject);
     }
 }

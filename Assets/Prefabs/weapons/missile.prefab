@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2059310609155788718}
   - component: {fileID: 2848777882381404156}
   - component: {fileID: 425467118818367003}
+  - component: {fileID: 5527448547663974268}
   m_Layer: 0
   m_Name: missile
   m_TagString: Weapon
@@ -246,3 +247,20 @@ MonoBehaviour:
   playerExplosionSize: 1
   weaponExplosionSize: 0.5
   obstacleExplosionSize: 0.75
+--- !u!114 &5527448547663974268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6368970826878767262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f8d76c407e17c4184ec17c71c7b14e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 8633086276810766276, guid: 86895cc21aa4f4e41a50aeb463de1d8e,
+    type: 3}
+  spawnInterval: 0.1
+  duration: 0.5
+  fadeTime: 0

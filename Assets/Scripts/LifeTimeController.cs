@@ -5,9 +5,8 @@ using UnityEngine;
 public class LifeTimeController : MonoBehaviour
 {
     public bool isFading;
-    private float fadeTime = 1F;
 
-    public IEnumerator LifetimeRoutine(float lifeTime)
+    public IEnumerator LifetimeRoutine(float lifeTime, float fadeTime)
     {
         yield return new WaitForSeconds(lifeTime);
 
