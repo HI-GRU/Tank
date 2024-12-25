@@ -201,7 +201,7 @@ MonoBehaviour:
     type: 3}
   minMissileCount: 1
   maxMissileCount: 1
-  spawnDistanceRate: 2
+  spawnDistanceRate: 2.5
 --- !u!4 &408674380
 Transform:
   m_ObjectHideFlags: 0

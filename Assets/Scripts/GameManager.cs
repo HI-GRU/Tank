@@ -5,12 +5,13 @@ using UnityEngine;
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    private static GameManager instance;
+    public static GameManager Instance => instance;
     public Camera mainCamera;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (instance == null) instance = this;
         mainCamera = Camera.main;
     }
 

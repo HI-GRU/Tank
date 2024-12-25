@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static Player Instance;
+    private static Player instance;
+    public static Player Instance => instance;
 
     [Header("Player Option")]
     private GameObject currentSkinObject;
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (instance == null) instance = this;
     }
 
     private void Start()

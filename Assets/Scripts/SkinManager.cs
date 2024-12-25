@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class SkinManager : MonoBehaviour
 {
-    public static SkinManager Instance { get; private set; }
+    private static SkinManager instance;
+    public static SkinManager Instance => instance;
 
     [SerializeField] private List<GameObject> skinPrefabs;
     private int currentSkinIndex;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (instance == null) instance = this;
         DontDestroyOnLoad(gameObject);
 
         LoadSelectedSkin();

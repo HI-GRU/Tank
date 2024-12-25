@@ -106,8 +106,8 @@ MonoBehaviour:
   maxLifeTime: 25
   minSpeed: 7
   maxSpeed: 7
-  minRotationSpeed: 120
-  maxRotationSpeed: 130
+  minRotationSpeed: 100
+  maxRotationSpeed: 120
 --- !u!114 &3821110514730794545
 MonoBehaviour:
   m_ObjectHideFlags: 0
