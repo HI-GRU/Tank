@@ -803,7 +803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be1c6ed37c565944ae8964f9c486e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 15
   maxObstacleCount: 10
   numOfTypes: 1
   pyramids:
@@ -816,6 +815,7 @@ MonoBehaviour:
   destroyFadeTime: 1
   lifeTime: 30
   bonusTime: 3
+  spawnDistanceRate: 0.5
 --- !u!4 &1867908106
 Transform:
   m_ObjectHideFlags: 0

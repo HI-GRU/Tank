@@ -5,7 +5,6 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     [Header("Spawning Option")]
-    [SerializeField] private float spawnInterval;
     [SerializeField] private int maxObstacleCount;
 
     [Header("Obstacles Option")]
@@ -17,6 +16,7 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private float destroyFadeTime;
     [SerializeField] private float lifeTime;
     [SerializeField] private float bonusTime;
+    [SerializeField] private float spawnDistanceRate;
 
     private int type;
     private List<GameObject> currentType;
@@ -35,13 +35,7 @@ public class ObstacleSpawner : MonoBehaviour
     private void FixedUpdate()
     {
         if (Player.Instance == null) return;
-        if (CanSpawn()) StartCoroutine(SpawnObstacles());
-    }
-
-    private IEnumerator SpawnObstacles()
-    {
-        SpawnObstacle();
-        yield return new WaitForSeconds(spawnInterval);
+        if (CanSpawn()) SpawnObstacle();
     }
 
     private void SpawnObstacle()
@@ -76,7 +70,7 @@ public class ObstacleSpawner : MonoBehaviour
         float x = Random.Range(di[spawnSide], di[spawnSide] + 1);
         float y = Random.Range(dj[spawnSide], dj[spawnSide] + 1);
 
-        return mainCamera.ViewportToWorldPoint(new Vector3(x, y, 0));
+        return mainCamera.ViewportToWorldPoint(new Vector3(x, y, 0) * spawnDistanceRate);
     }
 
     private bool IsValidPosition(Vector2 position)
