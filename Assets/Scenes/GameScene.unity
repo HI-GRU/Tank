@@ -703,7 +703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 180
   moveSpeed: 7
-  rotateMode: 0
+  rotateMode: 1
   joyStick: {fileID: 739760356}
 --- !u!212 &1749454414
 SpriteRenderer:
