@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float minSpeed;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float fadeTime;
+
+
     private float lifeTime;
     private float speed;
 
@@ -19,7 +21,7 @@ public class Weapon : MonoBehaviour
         speed = Random.Range(minSpeed, maxSpeed);
     }
 
-    protected void Start()
+    private void Start()
     {
         lifeTimeController = GetComponent<LifeTimeController>();
         StartCoroutine(lifeTimeController.LifetimeRoutine(lifeTime, fadeTime));
