@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class Player : MonoBehaviour
     private bool isKnockedBack = false;
     private float knockbackTime;
     private Vector2 knockbackForce;
+
+    [SerializeField] private int rotateMode; // 1 : 조이스틱 , 2 : 좌우 화면 터치
+    [SerializeField] private JoyStickHandler joyStick;
 
     private void Awake()
     {
@@ -35,32 +39,8 @@ public class Player : MonoBehaviour
             return;
         }
 
-        // if (Input.touchCount > 0)
-        // {
-        //     Touch touch = Input.GetTouch(0);
-        //     float mid = Screen.width / 2F;
-
-        //     if (touch.position.x < mid)
-        //     {
-        //         transform.Rotate(0F, 0F, rotationSpeed * Time.deltaTime);
-        //     }
-        //     else
-        //     {
-        //         transform.Rotate(0F, 0F, -rotationSpeed * Time.deltaTime);
-        //     }
-        // }
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Rotate(0F, 0F, rotationSpeed * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Rotate(0F, 0F, -rotationSpeed * Time.deltaTime);
-        }
-
-        Vector2 dir = transform.up;
-        transform.position += (Vector3)(dir * moveSpeed * Time.deltaTime);
+        Rotate(rotateMode);
+        Move();
     }
 
     private void LoadCurrentSkin()
@@ -79,6 +59,63 @@ public class Player : MonoBehaviour
 
         currentSkinObject = Instantiate(newSkinPrefab, transform);
         currentSkinObject.transform.localPosition = Vector3.zero;
+    }
+
+    private void Rotate(int mode)
+    {
+        switch (mode)
+        {
+            case 1:
+                JoyStickRotate();
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void JoyStickRotate()
+    {
+        Vector2 inputDir = joyStick.GetInputDir();
+        if (inputDir == Vector2.zero) return;
+
+        float currentAngle = transform.eulerAngles.z;
+        float targetAngle = Mathf.Atan2(inputDir.y, inputDir.x) * Mathf.Rad2Deg - 90F;
+
+        float angleDiff = Mathf.DeltaAngle(currentAngle, targetAngle);
+        float rotationAmount = rotationSpeed * Time.deltaTime;
+
+        if (angleDiff > 0) transform.Rotate(0F, 0F, rotationAmount);
+        else if (angleDiff < 0) transform.Rotate(0F, 0F, -rotationAmount);
+    }
+
+    private void TouchRotate()
+    {
+        // if (Input.touchCount > 0)
+        // {
+        //     Touch touch = Input.GetTouch(0);
+        //     float mid = Screen.width / 2F;
+        //     float rotationAmount = rotationSpeed * Time.deltaTime;
+        //     if (touch.position.x < mid) transform.Rotate(0F, 0F, rotationAmount);
+        //     else if (touch.position.x > mid) transform.Rotate(0F, 0F, -rotationAmount);
+        // }
+
+        // Debug
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Rotate(0F, 0F, rotationSpeed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Rotate(0F, 0F, -rotationSpeed * Time.deltaTime);
+        }
+    }
+
+    private void Move()
+    {
+        Vector2 dir = transform.up;
+        transform.position += (Vector3)(dir * moveSpeed * Time.deltaTime);
     }
 
     private void HandleKnockback()
