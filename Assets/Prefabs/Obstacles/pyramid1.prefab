@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2126851474782368538}
   - component: {fileID: 6232809308295238883}
   - component: {fileID: 4360528967528379215}
+  - component: {fileID: -6266411131137295656}
   m_Layer: 0
   m_Name: pyramid1
   m_TagString: Obstacle Skin
@@ -208,3 +209,18 @@ PolygonCollider2D:
       - {x: 1.22, y: 0.78999996}
       - {x: 1.17, y: 0.84999996}
   m_UseDelaunayMesh: 0
+--- !u!114 &-6266411131137295656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67655976231478985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db3d017cf7107f4894232e710519e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signPrefab: {fileID: 8566475817531452155, guid: 81436427db9af2c48b69bc00c0de3380,
+    type: 3}
+  offset: 0.5
