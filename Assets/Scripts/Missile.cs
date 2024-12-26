@@ -11,6 +11,7 @@ public class Missile : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float minRotationSpeed;
     [SerializeField] private float maxRotationSpeed;
+    [SerializeField] private float fadeTime;
     private float lifeTime;
     private float speed;
     private float rotationSpeed;
@@ -25,7 +26,7 @@ public class Missile : MonoBehaviour
     private void Start()
     {
         lifeTimeController = GetComponent<LifeTimeController>();
-        StartCoroutine(lifeTimeController.LifetimeRoutine(lifeTime, 1F));
+        StartCoroutine(lifeTimeController.LifetimeRoutine(lifeTime, fadeTime));
     }
 
     private void Update()
