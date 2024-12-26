@@ -1,49 +1,22 @@
 using UnityEngine;
 
-public class Missile : MonoBehaviour
+public class Missile : Weapon
 {
-    private LifeTimeController lifeTimeController;
-
     [Header("Missile Option")]
-    [SerializeField] private float minLifeTime;
-    [SerializeField] private float maxLifeTime;
-    [SerializeField] private float minSpeed;
-    [SerializeField] private float maxSpeed;
     [SerializeField] private float minRotationSpeed;
     [SerializeField] private float maxRotationSpeed;
-    [SerializeField] private float fadeTime;
-    private float lifeTime;
-    private float speed;
     private float rotationSpeed;
 
-    private void Awake()
+    protected override void Awake()
     {
-        lifeTime = Random.Range(minLifeTime, maxLifeTime);
-        speed = Random.Range(minSpeed, maxSpeed);
+        base.Awake();
         rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed);
-    }
-
-    private void Start()
-    {
-        lifeTimeController = GetComponent<LifeTimeController>();
-        StartCoroutine(lifeTimeController.LifetimeRoutine(lifeTime, fadeTime));
-    }
-
-    private void Update()
-    {
-        if (Player.Instance == null || lifeTimeController.isFading) return;
-        Move();
     }
 
     private void FixedUpdate()
     {
         if (Player.Instance == null || lifeTimeController.isFading) return;
         SetDirection();
-    }
-
-    private void Move()
-    {
-        transform.position += transform.up * speed * Time.deltaTime;
     }
 
     private void SetDirection()
