@@ -9,6 +9,7 @@ public class SkinManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> skinPrefabs;
     private int currentSkinIndex;
+    private string skinPrefs = "selectedSkinIndex";
 
     private void Awake()
     {
@@ -20,7 +21,7 @@ public class SkinManager : MonoBehaviour
 
     private void LoadSelectedSkin()
     {
-        currentSkinIndex = PlayerPrefs.GetInt("selectedSkinIndex", 0);
+        currentSkinIndex = PlayerPrefs.GetInt(skinPrefs, 0);
     }
 
     public GameObject GetCurrentSkin()
@@ -33,7 +34,7 @@ public class SkinManager : MonoBehaviour
         if (index >= 0 && index < skinPrefabs.Count)
         {
             currentSkinIndex = index;
-            PlayerPrefs.SetInt("selectedSkinIndex", index);
+            PlayerPrefs.SetInt(skinPrefs, index);
             PlayerPrefs.Save();
 
             Player.Instance.ChangeSkin(GetCurrentSkin());
