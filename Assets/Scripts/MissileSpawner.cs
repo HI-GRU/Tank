@@ -9,6 +9,7 @@ public class MissileSpawner : MonoBehaviour
     [SerializeField] private int minMissileCount;
     [SerializeField] private int maxMissileCount;
     [SerializeField] private float spawnDistanceRate;
+    [SerializeField] private int spawnableCount;
     private float spawnDistance;
 
     private Camera mainCamera;
@@ -70,6 +71,6 @@ public class MissileSpawner : MonoBehaviour
     private bool CanSpawn()
     {
         missiles.RemoveAll(missile => missile == null);
-        return !isSpawning && missiles.Count <= minMissileCount;
+        return !isSpawning && missiles.Count <= spawnableCount;
     }
 }
