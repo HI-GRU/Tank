@@ -45,7 +45,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         SetType();
 
-        int spawnSide = Random.Range(0, 9);
+        int spawnSide = Random.Range(0, 8);
         Vector2 spawnPosition = GetRandomPosition(spawnSide);
 
         if (!IsValidPosition(spawnPosition))

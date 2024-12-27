@@ -14,27 +14,28 @@ public class SignController : MonoBehaviour
     {
         mainCamera = GameManager.Instance.mainCamera;
         sign = Instantiate(signPrefab);
-        sign.SetActive(!isVisible);
+        sign.SetActive(isVisible);
     }
 
     private void Update()
     {
         if (!enabled || Player.Instance == null) return;
-        if (!isVisible) UpdateSignPosition();
+        UpdateSign();
     }
 
-    private void OnBecameVisible()
+    private void UpdateSign()
     {
-        if (Camera.current != mainCamera) return;
-        isVisible = true;
-        if (sign != null) sign.SetActive(false);
-    }
+        if (!enabled || Player.Instance == null) return;
 
-    private void OnBecameInvisible()
-    {
-        if (Camera.current != mainCamera) return;
-        isVisible = false;
-        if (sign != null) sign.SetActive(true);
+        bool setActive = !GameManager.Instance.IsPointInCamera(transform.position);
+        if (isVisible != setActive)
+        {
+            sign.SetActive(setActive);
+            isVisible = setActive;
+        }
+
+        if (!isVisible) return;
+        UpdateSignPosition();
     }
 
     private void UpdateSignPosition()
