@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public static GameManager Instance => instance;
-    public Camera mainCamera;
+    [HideInInspector] public Camera mainCamera;
 
     private void Awake()
     {
