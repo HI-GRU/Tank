@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
                 JoyStickRotate();
                 break;
             case 2:
+                TouchRotate();
                 break;
             default:
                 break;
