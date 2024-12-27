@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class WarningController : MonoBehaviour
+public class SingController : MonoBehaviour
 {
     [Header("Warning Option")]
     [SerializeField] private GameObject signPrefab;
@@ -17,6 +17,7 @@ public class WarningController : MonoBehaviour
     {
         mainCamera = GameManager.Instance.mainCamera;
         sign = Instantiate(signPrefab);
+        sign.SetActive(isActive);
     }
 
     private void Update()
