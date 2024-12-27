@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    private int maxHealth;
     private int health;
     private bool isDestroyed = false;
     private List<GameObject> obstacleType;
@@ -24,6 +25,7 @@ public class Obstacle : MonoBehaviour
     {
         obstacleType = type;
         health = obstacleType.Count - 1;
+        maxHealth = health;
         this.destroyDuration = destroyDuration;
         this.destroyFadeTime = destroyFadeTime;
         this.lifeTime = lifeTime;
@@ -56,7 +58,11 @@ public class Obstacle : MonoBehaviour
     public void Damaged()
     {
         if (isDestroyed) return;
-        if (--health == 0) isDestroyed = true;
+
+        health--;
+        ScoreManager.Instance.UpdateObstacleAttackScore(maxHealth - health);
+
+        if (health <= 0) isDestroyed = true;
         else lifeTime += bonusTime;
         SetCurrentObject();
     }

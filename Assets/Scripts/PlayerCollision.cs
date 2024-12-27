@@ -20,6 +20,7 @@ public class PlayerCollision : MonoBehaviour
         {
             Vector2 knockbackDir = ((Vector2)transform.position - other.ClosestPoint(transform.position)).normalized;
             player.ApplyKnockback(knockbackDir * knockbackForce, knockbackDuration);
+            ScoreManager.Instance.UpdateObstacleCollisionScore();
         }
     }
 }

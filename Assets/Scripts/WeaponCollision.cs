@@ -24,6 +24,7 @@ public class WeaponCollision : MonoBehaviour
         if (other.CompareTag("Weapon") && GameManager.Instance.IsPointInCamera(collisionPoint))
         {
             HandleWeaponCollision(other);
+            ScoreManager.Instance.UpdateWeaponCollisionScore();
             return;
         }
 
