@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 180
   moveSpeed: 7
-  rotateMode: 2
+  rotateMode: 1
   joyStick: {fileID: 739760356}
 --- !u!212 &1749454414
 SpriteRenderer:
@@ -1684,10 +1684,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1891893401}
+  - {fileID: 1240214725}
   - {fileID: 1749454412}
   - {fileID: 69375161}
-  - {fileID: 1993439713}
-  - {fileID: 1986395334}
-  - {fileID: 1240214725}
   - {fileID: 408674380}
   - {fileID: 1867908106}
+  - {fileID: 1993439713}
+  - {fileID: 1986395334}
