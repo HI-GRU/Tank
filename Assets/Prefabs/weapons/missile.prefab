@@ -105,8 +105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minLifeTime: 20
   maxLifeTime: 25
-  minSpeed: 7
-  maxSpeed: 7
+  minSpeed: 8
+  maxSpeed: 8
   fadeTime: 1
   minRotationSpeed: 100
   maxRotationSpeed: 120

@@ -199,8 +199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: 6368970826878767262, guid: a3b7cbbf66b379d43b796c80cb5dc22f,
     type: 3}
-  minMissileCount: 1
-  maxMissileCount: 1
+  minMissileCount: 2
+  maxMissileCount: 3
   spawnDistanceRate: 2.5
 --- !u!4 &408674380
 Transform:
@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be1c6ed37c565944ae8964f9c486e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxObstacleCount: 10
+  maxObstacleCount: 2
   numOfTypes: 1
   pyramids:
   - {fileID: 2644319076210753484, guid: 678497fd9e199cc45aaa0ea00e56db65, type: 3}
@@ -813,7 +813,7 @@ MonoBehaviour:
   minDistance: 2
   destroyDuration: 2
   destroyFadeTime: 1
-  lifeTime: 30
+  lifeTime: 20
   bonusTime: 3
   spawnDistanceRate: 0.5
 --- !u!4 &1867908106
