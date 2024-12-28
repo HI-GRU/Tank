@@ -6,6 +6,7 @@ public class JoyStickHandler : MonoBehaviour, IPointerDownHandler, IDragHandler,
     [Header("JoyStick")]
     [SerializeField] private RectTransform background;
     [SerializeField] private RectTransform handle;
+
     private float handleRange;
     private bool isDragging;
     private Vector2 touchStartPos;
@@ -25,6 +26,8 @@ public class JoyStickHandler : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (isDragging) return;
+
         touchStartPos = eventData.position;
         background.position = touchStartPos;
         handle.position = touchStartPos;

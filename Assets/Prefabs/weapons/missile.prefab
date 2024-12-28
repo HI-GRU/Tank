@@ -106,7 +106,7 @@ MonoBehaviour:
   minLifeTime: 20
   maxLifeTime: 25
   minSpeed: 8
-  maxSpeed: 8
+  maxSpeed: 9
   fadeTime: 1
   minRotationSpeed: 100
   maxRotationSpeed: 120

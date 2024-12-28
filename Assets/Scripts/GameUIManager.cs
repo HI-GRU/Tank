@@ -55,7 +55,7 @@ public class GameUIManager : MonoBehaviour
         {
             retryButton.onClick.AddListener(() =>
             {
-                SceneManager.LoadScene("GameScenes");
+                SceneManager.LoadScene("GameScene");
             });
         }
     }

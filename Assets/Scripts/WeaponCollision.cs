@@ -18,6 +18,7 @@ public class WeaponCollision : MonoBehaviour
         if (other.CompareTag("Player Skin") && GameManager.Instance.IsPointInCamera(collisionPoint))
         {
             HandlePlayerCollision(other);
+            GameManager.Instance.SetCurrentState(GameManager.GameState.GameOver);
             return;
         }
 

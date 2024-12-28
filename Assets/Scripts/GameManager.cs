@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         mainCamera = Camera.main;
-        currentState = GameState.Playing;
+        SetCurrentState(GameState.Playing);
     }
 
     public bool IsPointInCamera(Vector2 point)
