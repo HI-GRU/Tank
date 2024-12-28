@@ -14,6 +14,8 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Button pauseButton;
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button retryButton;
+    [SerializeField] private Button gameOverRetryButton;
+    [SerializeField] private Button gameOverHomeButton;
 
     private void Awake()
     {
@@ -56,6 +58,22 @@ public class GameUIManager : MonoBehaviour
             retryButton.onClick.AddListener(() =>
             {
                 SceneManager.LoadScene("GameScene");
+            });
+        }
+
+        if (gameOverRetryButton != null)
+        {
+            gameOverRetryButton.onClick.AddListener(() =>
+            {
+                SceneManager.LoadScene("GameScene");
+            });
+        }
+
+        if (gameOverHomeButton != null)
+        {
+            gameOverHomeButton.onClick.AddListener(() =>
+            {
+                SceneManager.LoadScene("MainScene");
             });
         }
     }

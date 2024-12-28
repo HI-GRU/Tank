@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [DefaultExecutionOrder(-10)]
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
                 HandlePaused();
                 break;
             case GameState.GameOver:
-                HandleGameOver();
+                StartCoroutine(HandleGameOver());
                 break;
             default:
                 break;
@@ -69,8 +70,9 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(false);
     }
 
-    private void HandleGameOver()
+    private IEnumerator HandleGameOver()
     {
+        yield return new WaitForSeconds(1.8F);
         Stop();
         playPanel.SetActive(false);
         pausePanel.SetActive(false);
