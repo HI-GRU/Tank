@@ -75,6 +75,8 @@ public class Player : MonoBehaviour
         float targetAngle = Mathf.Atan2(inputDir.y, inputDir.x) * Mathf.Rad2Deg - 90F;
 
         float angleDiff = Mathf.DeltaAngle(currentAngle, targetAngle);
+        if (Mathf.Abs(angleDiff) < 1F) return;
+
         float rotationAmount = rotationSpeed * Time.deltaTime;
 
         if (angleDiff > 0) transform.Rotate(0F, 0F, rotationAmount);
