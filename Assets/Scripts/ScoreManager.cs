@@ -9,13 +9,13 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance => instance;
 
     public int crownScore { get; private set; }
+    public float survivalTime { get; private set; }
 
     [Header("Score Option")]
     [SerializeField] private int obstacleAttackScore;
     [SerializeField] private int obstacleCollisionScore;
     [SerializeField] private int weaponCollisionScore;
     [SerializeField] private TextMeshProUGUI crownScoreText;
-    private float survivalTime;
 
     private void Awake()
     {

@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 [DefaultExecutionOrder(-10)]
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playPanel;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject gameOverPanel;
+
+    [SerializeField] private TextMeshProUGUI crownScoreText;
+    [SerializeField] private TextMeshProUGUI survivalScoreText;
+    [SerializeField] private TextMeshProUGUI totalScoreText;
+    [SerializeField] private float gameOverLoadingTime;
 
     private void Awake()
     {
@@ -72,7 +78,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator HandleGameOver()
     {
-        yield return new WaitForSeconds(1.8F);
+        CalculateScore();
+
+        yield return new WaitForSeconds(gameOverLoadingTime);
         Stop();
         playPanel.SetActive(false);
         pausePanel.SetActive(false);
@@ -87,5 +95,21 @@ public class GameManager : MonoBehaviour
     private void Stop()
     {
         Time.timeScale = 0F;
+    }
+
+    private void CalculateScore()
+    {
+        int crownScore = ScoreManager.Instance.crownScore;
+        int survivalScore = (int)ScoreManager.Instance.survivalTime;
+        int totalScore = crownScore + survivalScore;
+
+        UpdateScoreUI(crownScore, survivalScore, totalScore);
+    }
+
+    private void UpdateScoreUI(int crownScore, int survivalScore, int totalScore)
+    {
+        if (crownScoreText != null) crownScoreText.text = $"+ {crownScore:N0}";
+        if (survivalScoreText != null) survivalScoreText.text = $"+ {survivalScore:N0}";
+        if (totalScoreText != null) totalScoreText.text = $"+ {totalScore:N0}";
     }
 }

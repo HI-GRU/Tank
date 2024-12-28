@@ -1880,7 +1880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1125786791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2175,6 +2175,10 @@ MonoBehaviour:
   playPanel: {fileID: 980689932}
   pausePanel: {fileID: 1862097927}
   gameOverPanel: {fileID: 1125786790}
+  crownScoreText: {fileID: 18394504}
+  survivalScoreText: {fileID: 1395055971}
+  totalScoreText: {fileID: 783644071}
+  gameOverLoadingTime: 1.5
 --- !u!4 &1240214725
 Transform:
   m_ObjectHideFlags: 0
