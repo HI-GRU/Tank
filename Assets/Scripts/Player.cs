@@ -45,19 +45,9 @@ public class Player : MonoBehaviour
 
     private void LoadCurrentSkin()
     {
+        if (currentSkinObject != null) Destroy(currentSkinObject);
         GameObject skinPrefab = SkinManager.Instance.GetCurrentSkin();
         currentSkinObject = Instantiate(skinPrefab, transform);
-        currentSkinObject.transform.localPosition = Vector3.zero;
-    }
-
-    public void ChangeSkin(GameObject newSkinPrefab)
-    {
-        if (currentSkinObject != null)
-        {
-            Destroy(currentSkinObject);
-        }
-
-        currentSkinObject = Instantiate(newSkinPrefab, transform);
         currentSkinObject.transform.localPosition = Vector3.zero;
     }
 

@@ -36,8 +36,6 @@ public class SkinManager : MonoBehaviour
             currentSkinIndex = index;
             PlayerPrefs.SetInt(skinPrefs, index);
             PlayerPrefs.Save();
-
-            Player.Instance.ChangeSkin(GetCurrentSkin());
         }
     }
 }
