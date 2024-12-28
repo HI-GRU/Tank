@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         mainCamera = Camera.main;
+        Application.targetFrameRate = 60;
         SetCurrentState(GameState.Playing);
     }
 
