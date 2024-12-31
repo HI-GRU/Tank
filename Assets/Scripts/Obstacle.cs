@@ -2,74 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Obstacle : PooledObject
 {
-    private int maxHealth;
-    private int health;
-    private bool isDestroyed = false;
-    private List<GameObject> obstacleType;
-    private GameObject currentObject;
-    private LifeTimeController lifeTimeController;
-    private float destroyDuration;
-    private float destroyFadeTime;
-    private float lifeTime;
-    private float bonusTime;
-    private float timer;
+    [Header("Obstacle Option")]
+    [SerializeField] private float minLifeTime;
+    [SerializeField] private float maxLifeTime;
+    [SerializeField] private int maxHealth;
+    [SerializeField] protected float bonusTime;
 
-    private void Update()
-    {
-        timer += Time.deltaTime;
-    }
+    protected int health;
+    protected bool isDestroyed;
+    protected bool isFirstSpawn = true;
 
-    public void Initialize(List<GameObject> type, float destroyDuration, float destroyFadeTime, float lifeTime, float bonusTime)
-    {
-        obstacleType = type;
-        health = obstacleType.Count - 1;
-        maxHealth = health;
-        this.destroyDuration = destroyDuration;
-        this.destroyFadeTime = destroyFadeTime;
-        this.lifeTime = lifeTime;
-        this.bonusTime = bonusTime;
-        SetCurrentObject();
-    }
-
-    private void SetCurrentObject()
-    {
-        if (currentObject != null)
-        {
-            StopAllCoroutines();
-            Destroy(currentObject);
-        }
-
-        if (health >= 0 && health < obstacleType.Count)
-        {
-            currentObject = Instantiate(obstacleType[health], transform);
-            currentObject.transform.localPosition = Vector3.zero;
-            lifeTimeController = currentObject.AddComponent<LifeTimeController>();
-
-            float remainingTime;
-            if (health == 0 && isDestroyed) remainingTime = destroyDuration;
-            else remainingTime = lifeTime - timer;
-
-            StartCoroutine(WaitForDestroy(lifeTimeController, remainingTime, destroyFadeTime));
-        }
-    }
-
-    public void Damaged()
+    public virtual void Damaged()
     {
         if (isDestroyed) return;
 
         health--;
         ScoreManager.Instance.UpdateObstacleAttackScore(maxHealth - health);
-
-        if (health <= 0) isDestroyed = true;
-        else lifeTime += bonusTime;
-        SetCurrentObject();
     }
 
-    private IEnumerator WaitForDestroy(LifeTimeController controller, float duration, float fadeTime)
+    public override void InitializeObject()
     {
-        yield return StartCoroutine(controller.LifetimeRoutine(duration, fadeTime));
-        Destroy(gameObject);
+        if (isFirstSpawn)
+        {
+            health = maxHealth;
+            isDestroyed = false;
+            lifeTime = Random.Range(minLifeTime, maxLifeTime);
+            isFirstSpawn = false;
+        }
+        else
+        {
+            lifeTime += bonusTime;
+        }
+    }
+
+    public virtual void SetCurrentHealth(int currentHealth)
+    {
+        health = currentHealth;
+    }
+
+    public virtual void SetDestroyTimer(float time)
+    {
+        lifeTime = time;
+        StartCoroutine(WaitForReturn());
     }
 }

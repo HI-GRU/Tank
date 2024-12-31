@@ -7,6 +7,9 @@ public class ObjectPoolManager : MonoBehaviour
     private static ObjectPoolManager instance;
     public static ObjectPoolManager Instance => instance;
 
+    public const string missileTag = "missile";
+    public static readonly List<string> pyramidTags = new List<string> { "pyramid_0", "pyramid_1", "pyramid_2", "pyramid_3" };
+
     [System.Serializable]
     public class Pool
     {

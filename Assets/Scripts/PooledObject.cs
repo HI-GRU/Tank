@@ -6,7 +6,7 @@ public abstract class PooledObject : MonoBehaviour, IPooledObject
 {
     [Header("Pool Option")]
     [SerializeField] protected float fadeTime = 1F;
-    public string poolTag;
+    [HideInInspector] public string poolTag;
     protected float lifeTime;
     protected bool isFading;
     protected SpriteRenderer spriteRenderer;

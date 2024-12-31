@@ -10,6 +10,12 @@ public class WeaponCollision : MonoBehaviour
     [SerializeField] private float obstacleExplosionSize;
 
     Vector2 collisionPoint;
+    private IPooledObject pooledObject;
+
+    private void Start()
+    {
+        pooledObject = GetComponent<IPooledObject>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -39,21 +45,21 @@ public class WeaponCollision : MonoBehaviour
     private void HandlePlayerCollision(Collider2D playerSkin)
     {
         Explosion(playerExplosionSize);
-        Destroy(gameObject);
+        pooledObject.ReturnToPool();
         Destroy(playerSkin.GetComponentInParent<Player>().gameObject);
     }
 
     private void HandleWeaponCollision(Collider2D otherWeapon)
     {
         Explosion(weaponExplosionSize);
-        GetComponent<IPooledObject>().ReturnToPool();
+        pooledObject.ReturnToPool();
         otherWeapon.GetComponent<IPooledObject>().ReturnToPool();
     }
 
     private void HandleObstacleCollision(Collider2D obstacle)
     {
         Explosion(obstacleExplosionSize);
-        Destroy(gameObject);
+        pooledObject.ReturnToPool();
         obstacle.GetComponentInParent<Obstacle>().Damaged();
     }
 

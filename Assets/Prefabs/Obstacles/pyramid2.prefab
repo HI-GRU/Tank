@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 688490238233141702}
   - component: {fileID: 3365037678219399110}
   - component: {fileID: 1175134450956365509}
+  - component: {fileID: 3905586394631312235}
   m_Layer: 0
   m_Name: pyramid2
   m_TagString: Obstacle Skin
@@ -189,3 +190,21 @@ MonoBehaviour:
   signPrefab: {fileID: 8566475817531452155, guid: 81436427db9af2c48b69bc00c0de3380,
     type: 3}
   offset: 0.5
+--- !u!114 &3905586394631312235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17336597694216655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b6a9e60cab21147811ea6a26d6bde7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 1
+  poolTag: 
+  minLifeTime: 20
+  maxLifeTime: 20
+  maxHealth: 3
+  bonusTime: 3

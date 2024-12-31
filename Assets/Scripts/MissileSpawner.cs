@@ -10,8 +10,6 @@ public class MissileSpawner : MonoBehaviour
     [SerializeField] private float spawnDistanceRate;
     [SerializeField] private int spawnableCount;
 
-    private const string missilePoolTag = "missile";
-
     private float spawnDistance;
     private Camera mainCamera;
     private List<GameObject> activeMissiles;
@@ -61,7 +59,7 @@ public class MissileSpawner : MonoBehaviour
 
     private void SpawnMissile(Vector2 position)
     {
-        GameObject missile = ObjectPoolManager.Instance.SpawnFromPool(missilePoolTag, position, Quaternion.identity);
+        GameObject missile = ObjectPoolManager.Instance.SpawnFromPool(ObjectPoolManager.missileTag, position, Quaternion.identity);
         if (missile != null) activeMissiles.Add(missile);
     }
 

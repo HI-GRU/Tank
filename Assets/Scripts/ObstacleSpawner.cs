@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+    private static ObstacleSpawner instance;
+    public static ObstacleSpawner Instance => instance;
+
     [Header("Spawning Option")]
     [SerializeField] private int maxObstacleCount;
-
-    [Header("Obstacles Option")]
-    [SerializeField] private int numOfTypes;
-    [SerializeField] private List<GameObject> pyramids;
-    // [SerializeField] private List<GameObject> sphinxes; // 추후 추가시 추가
     [SerializeField] private float minDistance;
-    [SerializeField] private float destroyDuration;
-    [SerializeField] private float destroyFadeTime;
-    [SerializeField] private float lifeTime;
-    [SerializeField] private float bonusTime;
     [SerializeField] private float spawnDistanceRate;
+    [SerializeField] private int numOfTypes;
 
-    private int type;
-    private List<GameObject> currentType;
+    private string type;
     private Camera mainCamera;
-    private List<GameObject> obstacles;
+    private List<GameObject> activeObstacles;
     private float[] di = { -1, -1, 0, 1, 1, 1, 0, -1, 0 };
     private float[] dj = { 0, 1, 1, 1, 0, -1, -1, -1, 0 };
     private bool isSpawning = false;
 
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+    }
+
     private void Start()
     {
         mainCamera = GameManager.Instance.mainCamera;
-        obstacles = new List<GameObject>();
+        activeObstacles = new List<GameObject>();
     }
 
     private void FixedUpdate()
@@ -44,7 +43,6 @@ public class ObstacleSpawner : MonoBehaviour
         isSpawning = true;
 
         SetType();
-
         int spawnSide = Random.Range(0, 8);
         Vector2 spawnPosition = GetRandomPosition(spawnSide);
 
@@ -54,15 +52,26 @@ public class ObstacleSpawner : MonoBehaviour
             return;
         }
 
-        GameObject obstaclObj = new GameObject("obstacle");
-        obstaclObj.transform.position = spawnPosition;
-
-        Obstacle obstacle = obstaclObj.AddComponent<Obstacle>();
-        obstacle.Initialize(currentType, destroyDuration, destroyFadeTime, lifeTime, bonusTime);
-
-        obstacles.Add(obstaclObj);
+        GameObject obstacle = ObjectPoolManager.Instance.SpawnFromPool(type, spawnPosition, Quaternion.identity);
+        AddToActiveObstacles(obstacle);
 
         isSpawning = false;
+    }
+
+    private void SetType()
+    {
+        int ty = Random.Range(1, numOfTypes + 1);
+
+        switch (ty)
+        {
+            case 1:
+                List<string> list = ObjectPoolManager.pyramidTags;
+                type = list[list.Count - 1];
+                break;
+
+            default:
+                break;
+        }
     }
 
     private Vector2 GetRandomPosition(int spawnSide)
@@ -79,23 +88,17 @@ public class ObstacleSpawner : MonoBehaviour
         return colliders.Length == 0;
     }
 
-    private void SetType()
-    {
-        type = Random.Range(1, numOfTypes);
-
-        switch (type)
-        {
-            case 1:
-                currentType = pyramids;
-                break;
-            default:
-                break;
-        }
-    }
-
     private bool CanSpawn()
     {
-        obstacles.RemoveAll(obstacle => obstacle == null);
-        return !isSpawning && obstacles.Count < maxObstacleCount;
+        activeObstacles.RemoveAll(obstacle => obstacle == null || !obstacle.activeInHierarchy);
+        return !isSpawning && activeObstacles.Count < maxObstacleCount;
+    }
+
+    public void AddToActiveObstacles(GameObject obstacle)
+    {
+        if (obstacle != null && !activeObstacles.Contains(obstacle))
+        {
+            activeObstacles.Add(obstacle);
+        }
     }
 }
