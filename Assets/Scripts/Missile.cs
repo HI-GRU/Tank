@@ -7,15 +7,9 @@ public class Missile : Weapon
     [SerializeField] private float maxRotationSpeed;
     private float rotationSpeed;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed);
-    }
-
     private void FixedUpdate()
     {
-        if (Player.Instance == null || lifeTimeController.isFading) return;
+        if (Player.Instance == null || isFading) return;
         SetDirection();
     }
 
@@ -29,5 +23,11 @@ public class Missile : Weapon
             Quaternion.Euler(0F, 0F, angle),
             rotationSpeed * Time.fixedDeltaTime
         );
+    }
+
+    public override void InitializeObject()
+    {
+        base.InitializeObject();
+        rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed);
     }
 }

@@ -103,11 +103,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad0ac8597ea5f742a61467425af025b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minLifeTime: 20
-  maxLifeTime: 25
-  minSpeed: 8
-  maxSpeed: 9
   fadeTime: 1
+  poolTag: 
+  minLifeTime: 10
+  maxLifeTime: 10
+  minSpeed: 7
+  maxSpeed: 7
   minRotationSpeed: 100
   maxRotationSpeed: 120
 --- !u!114 &3821110514730794545

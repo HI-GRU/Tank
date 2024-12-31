@@ -5,28 +5,25 @@ using UnityEngine;
 public class MissileSpawner : MonoBehaviour
 {
     [Header("Spawning Option")]
-    [SerializeField] private GameObject missilePrefab;
     [SerializeField] private int minMissileCount;
     [SerializeField] private int maxMissileCount;
     [SerializeField] private float spawnDistanceRate;
     [SerializeField] private int spawnableCount;
-    private float spawnDistance;
 
+    private const string missilePoolTag = "missile";
+
+    private float spawnDistance;
     private Camera mainCamera;
-    private List<GameObject> missiles;
+    private List<GameObject> activeMissiles;
     private float[] di = { -1, -1, 0, 1, 1, 1, 0, -1 };
     private float[] dj = { 0, 1, 1, 1, 0, -1, -1, -1 };
     private bool isSpawning = false;
-
-    private void Awake()
-    {
-        missiles = new List<GameObject>();
-    }
 
     private void Start()
     {
         mainCamera = GameManager.Instance.mainCamera;
         spawnDistance = mainCamera.orthographicSize * spawnDistanceRate;
+        activeMissiles = new List<GameObject>();
     }
 
     private void FixedUpdate()
@@ -64,13 +61,13 @@ public class MissileSpawner : MonoBehaviour
 
     private void SpawnMissile(Vector2 position)
     {
-        GameObject missile = Instantiate(missilePrefab, position, Quaternion.identity);
-        missiles.Add(missile);
+        GameObject missile = ObjectPoolManager.Instance.SpawnFromPool(missilePoolTag, position, Quaternion.identity);
+        if (missile != null) activeMissiles.Add(missile);
     }
 
     private bool CanSpawn()
     {
-        missiles.RemoveAll(missile => missile == null);
-        return !isSpawning && missiles.Count <= spawnableCount;
+        activeMissiles.RemoveAll(missile => missile == null || !missile.activeInHierarchy);
+        return !isSpawning && activeMissiles.Count <= spawnableCount;
     }
 }

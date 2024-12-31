@@ -716,8 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ed7dfacd88dcc43a1d134f6b3ea8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missilePrefab: {fileID: 6368970826878767262, guid: a3b7cbbf66b379d43b796c80cb5dc22f,
-    type: 3}
+  missilePoolTag: missile
   minMissileCount: 2
   maxMissileCount: 3
   spawnDistanceRate: 2.5
@@ -857,6 +856,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467902827}
   m_CullTransparentMesh: 1
+--- !u!1 &471043268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 471043270}
+  - component: {fileID: 471043269}
+  m_Layer: 0
+  m_Name: ObjectPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &471043269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471043268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d35be379cc0a374b87d89ac048c7ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: missile
+    prefab: {fileID: 6368970826878767262, guid: a3b7cbbf66b379d43b796c80cb5dc22f,
+      type: 3}
+    size: 5
+--- !u!4 &471043270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471043268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 912.81915, y: 813.1763, z: 0.02210614}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &483033738
 GameObject:
   m_ObjectHideFlags: 0
@@ -4365,3 +4413,4 @@ SceneRoots:
   - {fileID: 1867908106}
   - {fileID: 1993439713}
   - {fileID: 1986395334}
+  - {fileID: 471043270}

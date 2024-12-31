@@ -46,8 +46,8 @@ public class WeaponCollision : MonoBehaviour
     private void HandleWeaponCollision(Collider2D otherWeapon)
     {
         Explosion(weaponExplosionSize);
-        Destroy(gameObject);
-        Destroy(otherWeapon.gameObject);
+        GetComponent<IPooledObject>().ReturnToPool();
+        otherWeapon.GetComponent<IPooledObject>().ReturnToPool();
     }
 
     private void HandleObstacleCollision(Collider2D obstacle)
