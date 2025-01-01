@@ -65,8 +65,7 @@ public class ObstacleSpawner : MonoBehaviour
         switch (ty)
         {
             case 1:
-                List<string> list = ObjectPoolManager.pyramidTags;
-                type = list[list.Count - 1];
+                type = "pyramid";
                 break;
 
             default:

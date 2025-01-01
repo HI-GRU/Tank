@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4168591791446797598}
   - component: {fileID: 3752790878852110523}
   - component: {fileID: -2930589632886586961}
-  - component: {fileID: -1204413989279043182}
+  - component: {fileID: 4231744594464949348}
   m_Layer: 0
   m_Name: pyramid3
   m_TagString: Obstacle Skin
@@ -188,7 +188,7 @@ MonoBehaviour:
   signPrefab: {fileID: 8566475817531452155, guid: 81436427db9af2c48b69bc00c0de3380,
     type: 3}
   offset: 0.5
---- !u!114 &-1204413989279043182
+--- !u!114 &4231744594464949348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7459763892990531375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08b6a9e60cab21147811ea6a26d6bde7, type: 3}
+  m_Script: {fileID: 11500000, guid: e22890452fdeb554286311bdf72425b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTime: 1
@@ -206,3 +206,8 @@ MonoBehaviour:
   maxLifeTime: 20
   maxHealth: 3
   bonusTime: 3
+  sprites:
+  - {fileID: 21300000, guid: 5dc0f7382eb66744ba456a6a2c2e6a74, type: 3}
+  - {fileID: 21300000, guid: 80e4c7b14790aec4b814c106a51274ad, type: 3}
+  - {fileID: 21300000, guid: c7063e909ad4d854fb8390743fcf3242, type: 3}
+  - {fileID: 21300000, guid: 68474fedee9021e49a09523210aa546f, type: 3}

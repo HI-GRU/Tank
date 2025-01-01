@@ -8,7 +8,7 @@ public class ObjectPoolManager : MonoBehaviour
     public static ObjectPoolManager Instance => instance;
 
     public const string missileTag = "missile";
-    public static readonly List<string> pyramidTags = new List<string> { "pyramid_0", "pyramid_1", "pyramid_2", "pyramid_3" };
+    public readonly string pyramidTag = "pyramid"; // 초기 상태 프리팹만 풀에 생성
 
     [System.Serializable]
     public class Pool
@@ -46,11 +46,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
-        if (!poolDictionary.ContainsKey(tag))
-        {
-            Debug.LogWarning($"Pool with tag {tag} doesn't exist.");
-            return null;
-        }
+        if (!poolDictionary.ContainsKey(tag)) return null;
 
         Queue<GameObject> pool = poolDictionary[tag];
 
@@ -69,21 +65,17 @@ public class ObjectPoolManager : MonoBehaviour
     {
         obj.transform.position = position;
         obj.transform.rotation = rotation;
+        obj.SetActive(true);
 
         IPooledObject pooledObj = obj.GetComponent<IPooledObject>();
         if (pooledObj != null) pooledObj.InitializeObject();
 
-        obj.SetActive(true);
         return obj;
     }
 
     public void ReturnToPool(string tag, GameObject obj)
     {
-        if (!poolDictionary.ContainsKey(tag))
-        {
-            Debug.LogWarning($"Pool with tag {tag} doesn't exist.");
-            return;
-        }
+        if (!poolDictionary.ContainsKey(tag)) return;
 
         obj.SetActive(false);
         poolDictionary[tag].Enqueue(obj);

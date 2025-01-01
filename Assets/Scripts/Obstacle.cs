@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Obstacle : PooledObject
@@ -9,42 +7,47 @@ public class Obstacle : PooledObject
     [SerializeField] private float maxLifeTime;
     [SerializeField] private int maxHealth;
     [SerializeField] protected float bonusTime;
+    [SerializeField] protected Sprite[] sprites;
 
     protected int health;
     protected bool isDestroyed;
-    protected bool isFirstSpawn = true;
+    protected Coroutine lifeTimeCoroutine;
 
     public virtual void Damaged()
     {
         if (isDestroyed) return;
 
-        health--;
+        if (--health <= 0 && !isDestroyed)
+        {
+            isDestroyed = true;
+            StartCoroutine(FadeOut());
+            return;
+        }
+
+        UpdateSprite();
+        StartLifeTimeCoroutine();
+
+        // 점수 로직
         ScoreManager.Instance.UpdateObstacleAttackScore(maxHealth - health);
     }
 
     public override void InitializeObject()
     {
-        if (isFirstSpawn)
-        {
-            health = maxHealth;
-            isDestroyed = false;
-            lifeTime = Random.Range(minLifeTime, maxLifeTime);
-            isFirstSpawn = false;
-        }
-        else
-        {
-            lifeTime += bonusTime;
-        }
+        health = maxHealth;
+        isDestroyed = false;
+        lifeTime = Random.Range(minLifeTime, maxLifeTime);
+        UpdateSprite();
+        StartLifeTimeCoroutine();
     }
 
-    public virtual void SetCurrentHealth(int currentHealth)
+    private void UpdateSprite()
     {
-        health = currentHealth;
+        if (health >= 0) spriteRenderer.sprite = sprites[health];
     }
 
-    public virtual void SetDestroyTimer(float time)
+    private void StartLifeTimeCoroutine()
     {
-        lifeTime = time;
-        StartCoroutine(WaitForReturn());
+        if (lifeTimeCoroutine != null) StopCoroutine(lifeTimeCoroutine);
+        lifeTimeCoroutine = StartCoroutine(WaitForReturn());
     }
 }
