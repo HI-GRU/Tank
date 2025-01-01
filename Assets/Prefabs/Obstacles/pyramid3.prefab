@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6256262092768604600}
   - component: {fileID: 4168591791446797598}
   - component: {fileID: 3752790878852110523}
-  - component: {fileID: -2930589632886586961}
   - component: {fileID: -1204413989279043182}
+  - component: {fileID: -1488210758959344754}
   m_Layer: 0
   m_Name: pyramid3
   m_TagString: Obstacle Skin
@@ -173,21 +173,6 @@ PolygonCollider2D:
       - {x: 0.71, y: -0.9}
       - {x: 0.76, y: -0.84999996}
   m_UseDelaunayMesh: 0
---- !u!114 &-2930589632886586961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7459763892990531375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db3d017cf7107f4894232e710519e7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  signPrefab: {fileID: 8566475817531452155, guid: 81436427db9af2c48b69bc00c0de3380,
-    type: 3}
-  offset: 0.5
 --- !u!114 &-1204413989279043182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,3 +191,18 @@ MonoBehaviour:
   maxLifeTime: 20
   maxHealth: 3
   bonusTime: 3
+--- !u!114 &-1488210758959344754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459763892990531375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21444400897a5a41a995c55d8e2cac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 1
+  poolTag: 
+  offset: 0.5

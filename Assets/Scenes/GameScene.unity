@@ -903,6 +903,14 @@ MonoBehaviour:
     prefab: {fileID: 7459763892990531375, guid: dbaf1727ef5fe8744b255068212ed0e3,
       type: 3}
     size: 3
+  - tag: weaponSign
+    prefab: {fileID: 5732771588836698398, guid: 0c4ab02e6a864e14bbe200cde44a705a,
+      type: 3}
+    size: 5
+  - tag: obstacleSign
+    prefab: {fileID: 8566475817531452155, guid: 81436427db9af2c48b69bc00c0de3380,
+      type: 3}
+    size: 3
 --- !u!4 &471043270
 Transform:
   m_ObjectHideFlags: 0
@@ -3628,7 +3636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be1c6ed37c565944ae8964f9c486e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxObstacleCount: 3
+  maxObstacleCount: 2
   minDistance: 2
   spawnDistanceRate: 0.5
   numOfTypes: 1

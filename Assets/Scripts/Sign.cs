@@ -1,20 +1,20 @@
+using System.Collections;
 using UnityEngine;
 
-public class SignController : MonoBehaviour
+public class Sign : PooledObject
 {
     [Header("Warning Option")]
-    [SerializeField] private GameObject signPrefab;
     [SerializeField] private float offset;
 
-    private GameObject sign;
-    private bool isVisible = false;
+    protected GameObject sign;
+    protected GameObject target;
+    private bool isVisible;
     private Camera mainCamera;
 
-    private void Start()
+    protected virtual void Start()
     {
         mainCamera = GameManager.Instance.mainCamera;
-        sign = Instantiate(signPrefab);
-        sign.SetActive(isVisible);
+        target = gameObject;
     }
 
     private void Update()
@@ -38,7 +38,7 @@ public class SignController : MonoBehaviour
         UpdateSignPosition();
     }
 
-    private void UpdateSignPosition()
+    protected void UpdateSignPosition()
     {
         Vector2 dir = (Vector2)(transform.position - Player.Instance.transform.position).normalized;
         Vector2 worldPos = transform.position;
@@ -72,8 +72,8 @@ public class SignController : MonoBehaviour
         sign.transform.position = intersection;
     }
 
-    private void OnDestroy()
+    public override void InitializeObject()
     {
-        if (sign != null) Destroy(sign);
+        isVisible = false;
     }
 }

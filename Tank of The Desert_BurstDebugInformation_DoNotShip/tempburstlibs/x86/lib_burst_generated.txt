@@ -9,6 +9,7 @@ Library: D:\github-repo\Tank\Temp\BurstOutput\tempburstlibs\x86\lib_burst_genera
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\github-repo\Tank\Temp\Burst
+--debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.42f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=D:\github-repo\Tank\Library\Burst
 --output=D:\github-repo\Tank\Temp\BurstOutput\tempburstlibs\x86\lib_burst_generated
