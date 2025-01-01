@@ -9,7 +9,7 @@ public class Missile : Weapon
 
     private void FixedUpdate()
     {
-        if (Player.Instance == null || !isFading) return;
+        if (Player.Instance == null || isFading) return;
         SetDirection();
     }
 

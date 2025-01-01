@@ -13,7 +13,7 @@ public class Weapon : PooledObject
 
     private void Update()
     {
-        if (Player.Instance == null || !isFading) return;
+        if (Player.Instance == null || isFading) return;
         Move();
     }
 

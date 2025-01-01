@@ -105,8 +105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 1
   poolTag: 
-  minLifeTime: 20
-  maxLifeTime: 25
+  minLifeTime: 10
+  maxLifeTime: 10
   minSpeed: 7
   maxSpeed: 7
   minRotationSpeed: 100
