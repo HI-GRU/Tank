@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2845346726990125956}
   - component: {fileID: 6759600874813719940}
+  - component: {fileID: 2969987244074247522}
   m_Layer: 0
   m_Name: MissileTrail
   m_TagString: Untagged
@@ -84,3 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2969987244074247522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633086276810766276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8996012c356f4d543b344465ac789952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 0
+  poolTag: 
+  trailLifeTime: 1.5
