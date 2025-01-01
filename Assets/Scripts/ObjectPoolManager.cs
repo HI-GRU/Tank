@@ -11,8 +11,6 @@ public class ObjectPoolManager : MonoBehaviour
     public static readonly List<string> pyramidTags = new List<string> { "pyramid_0", "pyramid_1", "pyramid_2", "pyramid_3" };
     public static readonly string obstacleSign = "obstacleSign";
     public static readonly string weaponSign = "weaponSign";
-    public static readonly string weaponTrail = "weaponTrail";
-    public static readonly string tankTrail = "tankTrail";
 
 
     [System.Serializable]
@@ -44,7 +42,6 @@ public class ObjectPoolManager : MonoBehaviour
                 objectPool.Enqueue(obj);
                 PooledObject pooledObj = obj.GetComponent<PooledObject>();
                 if (pooledObj != null) pooledObj.poolTag = pool.tag;
-
             }
             poolDictionary.Add(pool.tag, objectPool);
         }
@@ -59,8 +56,15 @@ public class ObjectPoolManager : MonoBehaviour
         }
 
         Queue<GameObject> pool = poolDictionary[tag];
-        GameObject spawnedObj = pool.Dequeue();
 
+        if (pool.Count == 0)
+        {
+            Pool poolInfo = pools.Find(p => p.tag == tag);
+            GameObject newObj = Instantiate(poolInfo.prefab);
+            return SetupPooledObject(newObj, position, rotation);
+        }
+
+        GameObject spawnedObj = pool.Dequeue();
         return SetupPooledObject(spawnedObj, position, rotation);
     }
 
@@ -71,8 +75,8 @@ public class ObjectPoolManager : MonoBehaviour
 
         IPooledObject pooledObj = obj.GetComponent<IPooledObject>();
         if (pooledObj != null) pooledObj.InitializeObject();
-        obj.SetActive(true);
 
+        obj.SetActive(true);
         return obj;
     }
 

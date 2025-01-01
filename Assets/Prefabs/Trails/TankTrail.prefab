@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4838433601669325372}
   - component: {fileID: 4393728933670562995}
-  - component: {fileID: 929420397195915504}
   m_Layer: 0
   m_Name: TankTrail
   m_TagString: Untagged
@@ -85,18 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &929420397195915504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8332220679346198452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8996012c356f4d543b344465ac789952, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeTime: 0.5
-  poolTag: 
-  trailLifeTime: 1

@@ -911,14 +911,6 @@ MonoBehaviour:
     prefab: {fileID: 8566475817531452155, guid: 81436427db9af2c48b69bc00c0de3380,
       type: 3}
     size: 3
-  - tag: weaponTrail
-    prefab: {fileID: 8633086276810766276, guid: 86895cc21aa4f4e41a50aeb463de1d8e,
-      type: 3}
-    size: 80
-  - tag: tankTrail
-    prefab: {fileID: 8332220679346198452, guid: e496774bd649d764e92ab6d824734699,
-      type: 3}
-    size: 100
 --- !u!4 &471043270
 Transform:
   m_ObjectHideFlags: 0
@@ -3277,7 +3269,6 @@ GameObject:
   - component: {fileID: 1749454413}
   - component: {fileID: 1749454414}
   - component: {fileID: 1749454415}
-  - component: {fileID: 1749454416}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3380,19 +3371,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e041ddd94c6204ea2805fb593f2e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1749454416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1749454411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19667b32416d07a4c82a4dd90f6e9d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 8332220679346198452, guid: e496774bd649d764e92ab6d824734699,
+    type: 3}
   spawnInterval: 0.06
+  duration: 0.3
+  fadeTime: 0.3
 --- !u!1 &1819327037
 GameObject:
   m_ObjectHideFlags: 0
@@ -4440,6 +4423,6 @@ SceneRoots:
   - {fileID: 1749454412}
   - {fileID: 408674380}
   - {fileID: 1867908106}
-  - {fileID: 471043270}
   - {fileID: 1993439713}
   - {fileID: 1986395334}
+  - {fileID: 471043270}
