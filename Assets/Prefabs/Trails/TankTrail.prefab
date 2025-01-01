@@ -99,4 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 0.5
   poolTag: 
-  trailLifeTime: 1
+  trailLifeTime: 0.5
